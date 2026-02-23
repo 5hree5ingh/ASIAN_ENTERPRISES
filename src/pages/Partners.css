@@ -1,0 +1,150 @@
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.partner-card {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+}
+
+.partner-logo {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, rgba(26, 86, 219, 0.25), rgba(26, 86, 219, 0.1));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.partner-card:hover .partner-logo {
+    background: linear-gradient(135deg, rgba(26, 86, 219, 0.4), rgba(26, 86, 219, 0.2));
+    border-color: var(--border-bright);
+}
+
+.partner-abbr {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--primary-glow);
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.partner-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 3px;
+}
+
+.partner-industry {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Industries */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.industry-card {
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.ind-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.ind-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 6px;
+}
+
+.ind-count {
+    font-size: 0.78rem;
+    color: var(--primary-glow);
+    font-weight: 600;
+}
+
+/* Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.testimonial-card {
+    padding: 36px 32px;
+    position: relative;
+}
+
+.testi-quote {
+    color: rgba(26, 86, 219, 0.4);
+    margin-bottom: 20px;
+}
+
+.testi-text {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    font-style: italic;
+}
+
+.testi-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.testi-avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.testi-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.testi-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
+
+@media (max-width: 600px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,367 @@
+/* Shared page hero */
+.page-hero {
+    position: relative;
+    padding: 160px 0 80px;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26, 86, 219, 0.18) 0%, transparent 70%),
+        linear-gradient(180deg, #071428 0%, #040d1a 100%);
+}
+
+.page-orb1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(26, 86, 219, 0.2);
+    top: -80px;
+    right: 10%;
+}
+
+.page-hero-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero-inner .section-tag {
+    margin-bottom: 20px;
+}
+
+/* About */
+.about-mv {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.mv-card {
+    padding: 40px 32px;
+}
+
+.mv-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(26, 86, 219, 0.15);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.mv-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.mv-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 14px;
+    color: var(--text-white);
+}
+
+.mv-card p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--border-bright), transparent);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: calc(50% + 40px);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item.right {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: calc(50% + 40px);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background: var(--primary);
+    border: 3px solid var(--bg-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(26, 86, 219, 0.6);
+    z-index: 1;
+}
+
+.timeline-card {
+    padding: 24px 28px;
+    max-width: 360px;
+    width: 100%;
+}
+
+.tl-year {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.tl-title {
+    font-size: 1.05rem;
+    color: var(--text-white);
+    margin-bottom: 8px;
+}
+
+.tl-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Team */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.team-card {
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+
+.team-avatar svg {
+    width: 80px;
+    height: 80px;
+}
+
+.team-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 6px;
+}
+
+.team-role {
+    font-size: 0.85rem;
+    color: var(--primary-light);
+    margin-bottom: 10px;
+}
+
+.team-exp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* Certifications */
+.certs-section {
+    background: var(--bg-dark);
+}
+
+.certs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 28px;
+    min-width: 200px;
+}
+
+.cert-badge {
+    width: 44px;
+    height: 44px;
+    background: rgba(26, 86, 219, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    flex-shrink: 0;
+}
+
+.cert-badge svg {
+    width: 22px;
+    height: 22px;
+}
+
+.cert-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-white);
+}
+
+/* Facilities */
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.facility-card {
+    padding: 32px;
+}
+
+.fc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.fc-id {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(26, 86, 219, 0.25);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+}
+
+.fc-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(26, 86, 219, 0.15);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+}
+
+.fc-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.fc-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.fc-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 12px;
+}
+
+.fc-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.fc-instruments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.fc-tag {
+    background: rgba(26, 86, 219, 0.12);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    color: var(--primary-glow);
+    font-weight: 500;
+}
+
+/* Cap banner */
+.cap-section {
+    background: var(--bg-dark);
+}
+
+.cap-banner {
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.cap-content {
+    flex: 1;
+    min-width: 280px;
+}
+
+.cap-stats {
+    display: flex;
+    gap: 40px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.cap-stat {
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item.right {
+        padding-right: 0;
+        padding-left: 50px;
+        justify-content: flex-start;
+    }
+
+    .timeline-dot {
+        left: 20px;
+    }
+
+    .cap-banner {
+        flex-direction: column;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+}
