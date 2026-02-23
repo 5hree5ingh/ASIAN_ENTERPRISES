@@ -58,46 +58,49 @@ const Home = () => {
                 <div className="glow-orb hero-orb1" />
                 <div className="glow-orb hero-orb2" />
 
-                {/* 3D Caliper Graphic */}
-                <div className="hero-graphic">
-                    <CaliperGraphic />
-                </div>
+                <div className="hero-inner container">
+                    {/* Left: Text Content */}
+                    <div className="hero-content">
+                        <div className="hero-badge">
+                            <span className="badge-dot" />
+                            Precision Measurement Specialists
+                        </div>
+                        <h1 className="hero-title">
+                            Calibration and
+                            <br />
+                            <span className="hero-gradient">Validation Facilities.</span>
+                        </h1>
+                        <p className="hero-desc">
+                            Asian Enterprises delivers world-class calibration, maintenance, and repair services
+                            for precision measuring instruments. From Vernier calipers to advanced gauge meters —
+                            we ensure your instruments meet the highest standards of accuracy.
+                        </p>
+                        <div className="hero-actions">
+                            <Link to="/contact" className="btn-primary">
+                                <span>Get a Free Quote</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                            <Link to="/facilities" className="btn-outline">
+                                Our Facilities
+                            </Link>
+                        </div>
 
-                <div className="hero-content container">
-                    <div className="hero-badge">
-                        <span className="badge-dot" />
-                        Precision Measurement Specialists
-                    </div>
-                    <h1 className="hero-title">
-                        Calibration and
-                        <br />
-                        <span className="hero-gradient">Validation Facilities.</span>
-                    </h1>
-                    <p className="hero-desc">
-                        Asian Enterprises delivers world-class calibration, maintenance, and repair services
-                        for precision measuring instruments. From Vernier calipers to advanced gauge meters —
-                        we ensure your instruments meet the highest standards of accuracy.
-                    </p>
-                    <div className="hero-actions">
-                        <Link to="/contact" className="btn-primary">
-                            <span>Get a Free Quote</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </Link>
-                        <Link to="/facilities" className="btn-outline">
-                            Our Facilities
-                        </Link>
+                        {/* Stats */}
+                        <div className="hero-stats">
+                            {highlights.map((h, i) => (
+                                <div key={i} className="hero-stat">
+                                    <div className="stat-number">{h.number}</div>
+                                    <div className="stat-label">{h.label}</div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Stats */}
-                    <div className="hero-stats">
-                        {highlights.map((h, i) => (
-                            <div key={i} className="hero-stat">
-                                <div className="stat-number">{h.number}</div>
-                                <div className="stat-label">{h.label}</div>
-                            </div>
-                        ))}
+                    {/* Right: 3D Caliper Graphic */}
+                    <div className="hero-graphic">
+                        <CaliperGraphic />
                     </div>
                 </div>
 
@@ -105,6 +108,7 @@ const Home = () => {
                     <div className="scroll-arrow" />
                 </div>
             </section>
+
 
             {/* ─── SERVICES ─── */}
             <section className="section services-section">

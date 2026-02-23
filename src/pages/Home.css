@@ -11,6 +11,19 @@
         linear-gradient(180deg, #071428 0%, #040d1a 100%);
 }
 
+/* Hero two-column inner row */
+.hero-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+    z-index: 2;
+    padding-top: 80px;
+    padding-bottom: 16px;
+    width: 100%;
+}
+
 .hero-orb1 {
     width: 500px;
     height: 500px;
@@ -27,12 +40,9 @@
     left: -50px;
 }
 
-/* Floating graphic */
+/* Caliper graphic — right column */
 .hero-graphic {
-    position: absolute;
-    right: 4%;
-    top: 50%;
-    transform: translateY(-50%);
+    flex-shrink: 0;
     width: 480px;
     height: 320px;
     display: flex;
@@ -82,12 +92,12 @@
     padding: 20px;
 }
 
-/* Hero content */
+/* Hero content — left column */
 .hero-content {
+    flex: 1;
     position: relative;
     z-index: 2;
-    padding-top: 90px;
-    padding-bottom: 20px;
+    min-width: 0;
 }
 
 .hero-badge {
@@ -493,6 +503,12 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+    .hero-inner {
+        flex-direction: column;
+        gap: 24px;
+        padding-top: 100px;
+    }
+
     .hero-graphic {
         display: none;
     }
