@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import CaliperGraphic from '../components/CaliperGraphic';
 
 const services = [
     {
@@ -57,24 +58,9 @@ const Home = () => {
                 <div className="glow-orb hero-orb1" />
                 <div className="glow-orb hero-orb2" />
 
-                {/* Floating instrument graphic */}
+                {/* 3D Caliper Graphic */}
                 <div className="hero-graphic">
-                    <div className="graphic-ring ring1" />
-                    <div className="graphic-ring ring2" />
-                    <div className="graphic-ring ring3" />
-                    <div className="graphic-center">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="46" width="80" height="8" rx="4" fill="#1a56db" opacity="0.9" />
-                            <rect x="10" y="28" width="8" height="44" rx="3" fill="#1a56db" />
-                            <rect x="82" y="28" width="8" height="44" rx="3" fill="#1a56db" />
-                            <circle cx="50" cy="50" r="10" fill="#040d1a" stroke="#60a5fa" strokeWidth="2.5" />
-                            <circle cx="50" cy="50" r="3" fill="#60a5fa" />
-                            <rect x="20" y="38" width="4" height="16" rx="2" fill="#3b82f6" opacity="0.8" />
-                            <rect x="28" y="42" width="3" height="8" rx="1.5" fill="#3b82f6" opacity="0.5" />
-                            <rect x="69" y="38" width="4" height="16" rx="2" fill="#3b82f6" opacity="0.8" />
-                            <rect x="76" y="42" width="3" height="8" rx="1.5" fill="#3b82f6" opacity="0.5" />
-                        </svg>
-                    </div>
+                    <CaliperGraphic />
                 </div>
 
                 <div className="hero-content container">

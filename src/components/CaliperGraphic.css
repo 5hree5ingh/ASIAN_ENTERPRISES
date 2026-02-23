@@ -1,0 +1,147 @@
+.caliper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Glow rings */
+.c-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(59, 130, 246, 0.18);
+    animation: c-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.c-ring1 {
+    width: 100%;
+    height: 100%;
+    animation-delay: 0s;
+}
+
+.c-ring2 {
+    width: 75%;
+    height: 75%;
+    border-color: rgba(59, 130, 246, 0.3);
+    animation-delay: 0.9s;
+}
+
+.c-ring3 {
+    width: 50%;
+    height: 50%;
+    border-color: rgba(96, 165, 250, 0.45);
+    animation-delay: 1.8s;
+}
+
+@keyframes c-pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+}
+
+/* Main SVG float animation */
+.caliper-svg {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 480px;
+    filter: drop-shadow(0 12px 32px rgba(26, 86, 219, 0.45));
+    animation: caliper-float 5s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes caliper-float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotateX(0deg);
+    }
+
+    25% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+
+    75% {
+        transform: translateY(6px) rotateX(-1deg);
+    }
+}
+
+/* Scan line sweep */
+.scan-line {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(96, 165, 250, 0.0) 10%,
+            rgba(96, 165, 250, 0.6) 50%,
+            rgba(96, 165, 250, 0.0) 90%,
+            transparent 100%);
+    border-radius: 1px;
+    z-index: 3;
+    animation: scan 3.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes scan {
+    0% {
+        top: 10%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 90%;
+        opacity: 0;
+    }
+}
+
+/* Label chip */
+.caliper-label {
+    position: absolute;
+    bottom: 8%;
+    right: 8%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(10, 22, 50, 0.85);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #93c5fd;
+    letter-spacing: 0.5px;
+    z-index: 4;
+    backdrop-filter: blur(8px);
+    animation: fadeInUp 1s ease both 0.8s;
+}
+
+.cl-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #60a5fa;
+    box-shadow: 0 0 8px #60a5fa;
+    animation: c-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}

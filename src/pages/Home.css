@@ -30,11 +30,11 @@
 /* Floating graphic */
 .hero-graphic {
     position: absolute;
-    right: 8%;
+    right: 4%;
     top: 50%;
     transform: translateY(-50%);
-    width: 340px;
-    height: 340px;
+    width: 480px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
