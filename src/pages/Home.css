@@ -43,8 +43,8 @@
 /* Caliper graphic — right column */
 .hero-graphic {
     flex-shrink: 0;
-    width: 500px;
-    height: 440px;
+    width: 480px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
