@@ -5,12 +5,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import AboutMain from './pages/AboutMain';
 import Facilities from './pages/Facilities';
 import Projects from './pages/Projects';
 import Gallery from './pages/Gallery';
 import Partners from './pages/Partners';
 import Contact from './pages/Contact';
 import './pages/About.css';
+import './pages/AboutMain.css';
 import './pages/Facilities.css';
 import './pages/Projects.css';
 import './pages/Contact.css';
@@ -32,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/about-main" element={<AboutMain />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/gallery" element={<Gallery />} />

@@ -1,0 +1,7 @@
+/* AboutMain section reuses Home.css why-section styles */
+/* Add any overrides specific to the standalone AboutMain component here */
+
+.about-main-section {
+    position: relative;
+    overflow: hidden;
+}
