@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './About.css';
 
 const team = [
-    { name: 'Mrs. Mamta', role: 'Founder', exp: '12+ yrs', initials: 'MM' },
-    { name: 'Mr. Satish Kumar Mishra', role: 'Chief Executive Officer', exp: '12+ yrs', initials: 'SK' },
+    { name: 'Mrs. Mamta', role: 'Founder', exp: '12+ yrs', initials: 'MM', photo: null },
+    { name: 'Mr. Satish Kumar Mishra', role: 'Chief Executive Officer', exp: '12+ yrs', initials: 'SK', photo: '/images/SATISH.png' },
 ];
 
 const milestones = [
@@ -110,7 +110,10 @@ const About = () => (
                     {team.map((member, i) => (
                         <div key={i} className="team-card glass-card">
                             <div className="team-avatar">
-                                <span className="team-initials">{member.initials}</span>
+                                {member.photo
+                                    ? <img src={member.photo} alt={member.name} className="team-photo" />
+                                    : <span className="team-initials">{member.initials}</span>
+                                }
                             </div>
                             <div className="team-info">
                                 <h4 className="team-name">{member.name}</h4>
