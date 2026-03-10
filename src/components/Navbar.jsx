@@ -5,7 +5,7 @@ import './Navbar.css';
 const navLinks = [
     { label: 'Home', path: '/', sectionId: 'home-hero' },
     { label: 'About Us', path: '/about', sectionId: 'about-main' },
-    { label: 'Facilities', path: '/facilities', sectionId: null },
+    { label: 'Facilities', path: '/facilities', sectionId: 'facilities-section' },
     { label: 'Projects', path: '/projects', sectionId: null },
     { label: 'Gallery', path: '/gallery', sectionId: null },
     { label: 'Partners', path: '/partners', sectionId: null },
@@ -90,12 +90,25 @@ const Navbar = () => {
                 <ul className="nav-links">
                     {navLinks.map(link => (
                         <li key={link.path}>
-                            <Link
-                                to={link.path}
-                                className={`nav-link ${isActive(link) ? 'active' : ''}`}
-                            >
-                                {link.label}
-                            </Link>
+                            {location.pathname === '/' && link.sectionId ? (
+                                <a
+                                    href={`#${link.sectionId}`}
+                                    className={`nav-link ${isActive(link) ? 'active' : ''}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById(link.sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                >
+                                    {link.label}
+                                </a>
+                            ) : (
+                                <Link
+                                    to={link.path}
+                                    className={`nav-link ${isActive(link) ? 'active' : ''}`}
+                                >
+                                    {link.label}
+                                </Link>
+                            )}
                         </li>
                     ))}
                 </ul>
@@ -123,13 +136,28 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
                 {navLinks.map(link => (
-                    <Link
-                        key={link.path}
-                        to={link.path}
-                        className={`mobile-link ${isActive(link) ? 'active' : ''}`}
-                    >
-                        {link.label}
-                    </Link>
+                    location.pathname === '/' && link.sectionId ? (
+                        <a
+                            key={link.path}
+                            href={`#${link.sectionId}`}
+                            className={`mobile-link ${isActive(link) ? 'active' : ''}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setMenuOpen(false);
+                                document.getElementById(link.sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                        >
+                            {link.label}
+                        </a>
+                    ) : (
+                        <Link
+                            key={link.path}
+                            to={link.path}
+                            className={`mobile-link ${isActive(link) ? 'active' : ''}`}
+                        >
+                            {link.label}
+                        </Link>
+                    )
                 ))}
                 <a
                     href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20%F0%9F%91%8B%0A%0AI%20am%20interested%20in%20your%20precision%20calibration%20and%20measurement%20services.%0A%0ACould%20you%20please%20provide%20a%20quote%20for%20my%20requirements%3F%0A%0AThank%20you!"

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import CaliperGraphic from '../components/CaliperGraphic';
 import AboutMain from './AboutMain';
+import Facilities from './Facilities';
 
 
 
@@ -50,9 +51,16 @@ const Home = () => {
                                     <path d="M5 12h14M12 5l7 7-7 7" />
                                 </svg>
                             </a>
-                            <Link to="/facilities" className="btn-outline">
+                            <a
+                                href="#facilities-section"
+                                className="btn-outline"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('facilities-section')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
                                 Our Facilities
-                            </Link>
+                            </a>
                         </div>
 
                         {/* Stats */}
@@ -80,6 +88,11 @@ const Home = () => {
 
             {/* ─── WHY CHOOSE US (About Main) ─── */}
             <AboutMain />
+
+            {/* ─── FACILITIES ─── */}
+            <section id="facilities-section">
+                <Facilities embedded />
+            </section>
 
             {/* ─── INSTRUMENTS WE CALIBRATE ─── */}
             <section className="section instruments-section">

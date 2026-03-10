@@ -1,156 +1,341 @@
 import React from 'react';
 import './Facilities.css';
-import './About.css';
 
-const facilities = [
+/* ─── CALIBRATION DATA ─────────────────────────────────────── */
+const calibrations = [
     {
         id: '01',
-        name: 'Dimensional Calibration Lab',
-        location: 'Mumbai HQ',
-        desc: 'State-of-the-art lab for calibrating all dimensional measuring instruments including Vernier calipers, micrometers, height gauges, and bore gauges. Temperature-controlled environment to ±1°C.',
-        instruments: ['Vernier Calipers', 'Micrometers', 'Height Gauges', 'Bore Gauges'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-            </svg>
-        ),
+        name: 'Temperature & Humidity',
+        short: 'Parameters Calibration',
+        img: '/images/calib_temp_humidity.png',
+        color: '#3b82f6',
     },
     {
         id: '02',
-        name: 'Torque & Force Calibration Centre',
-        location: 'Pune Branch',
-        desc: 'Dedicated facility for precision calibration of torque wrenches, force gauges, dynamometers, and load cells with traceability to national standards.',
-        instruments: ['Torque Wrenches', 'Force Gauges', 'Dynamometers', 'Load Cells'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-            </svg>
-        ),
+        name: 'Volume & Mass',
+        short: 'Calibration',
+        img: '/images/calib_volume_mass.png',
+        color: '#06b6d4',
     },
     {
         id: '03',
-        name: 'Pressure & Vacuum Lab',
-        location: 'Nashik Branch',
-        desc: 'Fully equipped pressure calibration laboratory for gauges, transmitters, and transducers. Calibration range from vacuum to 1000 bar with high-precision reference standards.',
-        instruments: ['Pressure Gauges', 'Transmitters', 'Transducers', 'Vacuum Gauges'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" />
-            </svg>
-        ),
+        name: 'Pressure',
+        short: 'Calibration',
+        img: '/images/calib_pressure.png',
+        color: '#8b5cf6',
     },
     {
         id: '04',
-        name: 'Temperature Metrology Lab',
-        location: 'Aurangabad Branch',
-        desc: 'Advanced temperature calibration facility for thermometers, thermocouples, RTDs, and data loggers. NABL accredited for temperature calibration.',
-        instruments: ['Thermometers', 'Thermocouples', 'RTD Sensors', 'Data Loggers'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z" />
-            </svg>
-        ),
+        name: 'Electro Technical',
+        short: 'Calibration',
+        img: '/images/calib_electro.png',
+        color: '#f59e0b',
     },
     {
         id: '05',
-        name: 'Electrical & Electronic Standards Lab',
-        location: 'Navi Mumbai Branch',
-        desc: 'Precision electrical calibration for multimeters, oscilloscopes, clamp meters, power analyzers, and electronic measurement instruments.',
-        instruments: ['Multimeters', 'Oscilloscopes', 'Clamp Meters', 'Power Analyzers'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-        ),
+        name: 'Dimension',
+        short: 'Calibration',
+        img: '/images/calib_dimension.png',
+        color: '#10b981',
     },
     {
         id: '06',
-        name: 'Mass & Volume Calibration Lab',
-        location: 'Surat Branch',
-        desc: 'Calibration of weighing scales, balances, weights, and volumetric glassware. Certified to national and international standards for mass measurement.',
-        instruments: ['Balances', 'Weighing Scales', 'Reference Weights', 'Burettes'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M12 3v18M3 9h18M3 15h18" />
-            </svg>
-        ),
+        name: 'Light Intensity (Lux)',
+        short: 'Calibration',
+        img: '/images/calib_light_lux.png',
+        color: '#f97316',
     },
     {
         id: '07',
-        name: 'On-site Mobile Calibration Unit',
-        location: 'Pan-India Service',
-        desc: 'Fully equipped mobile laboratory for on-site calibration at client premises. Serving manufacturing plants, hospitals, and research facilities across India.',
-        instruments: ['All Standard Instruments', 'Process Instruments', 'Panel Instruments', 'QC Equipment'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <rect x="1" y="3" width="15" height="13" rx="2" /><path d="M16 8h4l3 3v4h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-            </svg>
-        ),
+        name: 'Acoustic & RPM',
+        short: 'Calibration',
+        img: '/images/calib_acoustic_rpm.png',
+        color: '#ec4899',
     },
     {
         id: '08',
-        name: 'Repair & Restoration Workshop',
-        location: 'Mumbai HQ',
-        desc: 'Expert mechanical and electronic repair workshop for all types of precision measuring instruments. Equipped with specialized tools for complete instrument restoration.',
-        instruments: ['All Instrument Types', 'Optical Instruments', 'Surface Measurement', 'Form Measurement'],
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-            </svg>
-        ),
+        name: 'Energy',
+        short: 'Calibration',
+        img: '/images/calib_energy.png',
+        color: '#14b8a6',
+    },
+    {
+        id: '09',
+        name: 'Force',
+        short: 'Calibration',
+        img: '/images/calib_force.png',
+        color: '#a855f7',
     },
 ];
 
-const Facilities = () => (
-    <div className="facilities-page page-enter">
-        {/* Page Header */}
-        <section className="page-hero">
-            <div className="bg-grid" />
-            <div className="glow-orb page-orb1" />
-            <div className="container page-hero-inner">
-                <div className="section-tag">Our Infrastructure</div>
-                <h1 className="section-title" style={{ fontSize: 'clamp(2.2rem,5vw,3.5rem)' }}>
-                    8 World-Class <span>Facilities</span>
-                </h1>
-                <p className="section-subtitle" style={{ maxWidth: '680px' }}>
-                    Our network of 8 strategically located labs and service centres ensures we are always
-                    close to you — equipped with NABL-traceable reference standards and the latest
-                    calibration technology.
-                </p>
-            </div>
-        </section>
+/* ─── HYGRO THERMAL DATA ─────────────────────────────────── */
+const hygroThermal = [
+    { id: '01', name: 'RM / FG Stores', icon: '🏭' },
+    { id: '02', name: 'Warehouse', icon: '🏢' },
+    { id: '03', name: 'Quarantine Areas', icon: '🔒' },
+    { id: '04', name: 'Cold Stores', icon: '❄️' },
+];
 
-        {/* Facilities Grid */}
-        <section className="section">
+/* ─── OTHER FACILITIES DATA ──────────────────────────────── */
+const otherFacilities = [
+    { id: '01', name: 'HVAC & Clean Room Test', icon: '💨' },
+    { id: '02', name: 'Steam Quality Test', icon: '♨️' },
+    { id: '03', name: 'Compressed Air Validation', icon: '🔧' },
+    { id: '04', name: 'PLC Validation & VFD Repair', icon: '⚡' },
+    { id: '05', name: 'Measuring Instruments Supply', icon: '📐' },
+    { id: '06', name: 'Repair of Mechanical Instruments', icon: '🔩' },
+];
+
+
+/* ─── VALIDATION DATA ──────────────────────────────────────── */
+const validations = [
+    {
+        id: '01',
+        name: 'Autoclave / Sterilizer',
+        short: 'Validation',
+        img: '/images/valid_autoclave.png',
+        color: '#3b82f6',
+    },
+    {
+        id: '02',
+        name: 'Tunnels',
+        short: 'Validation',
+        img: '/images/valid_tunnel.png',
+        color: '#06b6d4',
+    },
+    {
+        id: '03',
+        name: 'Incubators',
+        short: 'Validation',
+        img: '/images/valid_incubator.png',
+        color: '#10b981',
+    },
+    {
+        id: '04',
+        name: 'Oven / Vacuum Oven / VTD / STD / ATD',
+        short: 'Validation',
+        img: '/images/valid_oven.png',
+        color: '#f59e0b',
+    },
+    {
+        id: '05',
+        name: 'Muffle Furnace',
+        short: 'Validation',
+        img: '/images/valid_muffle.png',
+        color: '#ef4444',
+    },
+    {
+        id: '06',
+        name: 'Process Reactors / Industrial Furnace',
+        short: 'Validation',
+        img: '/images/valid_reactor.png',
+        color: '#8b5cf6',
+    },
+    {
+        id: '07',
+        name: 'Water Bath',
+        short: 'Validation',
+        img: '/images/calib_temp_humidity.png',
+        color: '#0ea5e9',
+    },
+    {
+        id: '08',
+        name: 'Refrigerator & Deep Freezer',
+        short: 'Validation',
+        img: '/images/calib_pressure.png',
+        color: '#6366f1',
+    },
+    {
+        id: '09',
+        name: 'Dry Heat Sterilizer (DHS)',
+        short: 'Validation',
+        img: '/images/valid_muffle.png',
+        color: '#f97316',
+    },
+];
+
+/* ─── MARQUEE ROW ──────────────────────────────────────────── */
+const MarqueeRow = ({ items, reverse = false }) => {
+    /* Duplicate for seamless loop */
+    const doubled = [...items, ...items];
+    return (
+        <div className="marquee-viewport">
+            <div className={`marquee-track ${reverse ? 'marquee-reverse' : ''}`}>
+                {doubled.map((item, i) => (
+                    <div key={i} className="fac-card glass-card">
+                        <div className="fac-img-wrap">
+                            <img src={item.img} alt={item.name} className="fac-img" />
+                            <div className="fac-img-overlay" />
+                            <span className="fac-num">{item.id}</span>
+                        </div>
+                        <div className="fac-body">
+                            <h3 className="fac-name">{item.name}</h3>
+                            <p className="fac-label">{item.short}</p>
+                            <div className="fac-dot-row">
+                                <span className="fac-dot" />
+                                <span className="fac-dot-line" />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+/* ─── PAGE ─────────────────────────────────────────────────── */
+const Facilities = ({ embedded = false }) => (
+    <div className={`facilities-page${embedded ? ' facilities-embedded' : ' page-enter'}`}>
+
+        {/* ── HERO — only shown on standalone /facilities route ── */}
+        {!embedded && (
+            <section className="page-hero">
+                <div className="bg-grid" />
+                <div className="glow-orb page-orb1" />
+                <div className="container page-hero-inner">
+                    <div className="section-tag">Our Services</div>
+                    <h1 className="section-title" style={{ fontSize: 'clamp(2.2rem,5vw,3.5rem)' }}>
+                        Calibration &amp; <span>Validation</span> Facilities
+                    </h1>
+                    <p className="section-subtitle" style={{ maxWidth: '680px' }}>
+                        Asian Enterprises offers a comprehensive suite of NABL-accredited calibration
+                        and validation services — ensuring your instruments and processes meet the
+                        highest standards of accuracy and compliance.
+                    </p>
+                </div>
+            </section>
+        )}
+
+        {/* ── CALIBRATION SECTION ── */}
+        <section className="section fac-section">
             <div className="container">
-                <div className="facilities-grid">
-                    {facilities.map((f) => (
-                        <div key={f.id} className="facility-card glass-card">
-                            <div className="fc-header">
-                                <div className="fc-id">{f.id}</div>
-                                <div className="fc-icon">{f.icon}</div>
-                            </div>
-                            <div className="fc-location">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                {f.location}
-                            </div>
-                            <h3 className="fc-name">{f.name}</h3>
-                            <p className="fc-desc">{f.desc}</p>
-                            <div className="fc-instruments">
-                                {f.instruments.map((inst, j) => (
-                                    <span key={j} className="fc-tag">{inst}</span>
-                                ))}
-                            </div>
+                <div className="section-header center fac-header">
+                    <div className="section-tag">Precision Measurement</div>
+                    <h2 className="section-title">
+                        Calibration <span>Facilities</span> We Provide
+                    </h2>
+                    <p className="section-subtitle" style={{ margin: '0 auto' }}>
+                        9 specialised calibration disciplines, each traceable to national &amp; international standards.
+                    </p>
+                </div>
+            </div>
+
+            {/* Scrolling marquee rows */}
+            <div className="fac-marquee-wrap">
+                <MarqueeRow items={calibrations} />
+                <MarqueeRow items={[...calibrations].reverse()} reverse />
+            </div>
+
+            {/* Count strip */}
+            <div className="container">
+                <div className="fac-count-strip">
+                    {calibrations.map((c) => (
+                        <div key={c.id} className="fcs-pill">
+                            <span className="fcs-dot" />
+                            <span>{c.name}</span>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
 
-        {/* Capabilities Banner */}
+        {/* divider */}
+        <div className="container">
+            <div className="divider" />
+        </div>
+
+        {/* ── VALIDATION SECTION ── */}
+        <section className="section fac-section">
+            <div className="container">
+                <div className="section-header center fac-header">
+                    <div className="section-tag">Process Assurance</div>
+                    <h2 className="section-title">
+                        Validation <span>Facilities</span> We Provide
+                    </h2>
+                    <p className="section-subtitle" style={{ margin: '0 auto' }}>
+                        Comprehensive validation services for pharmaceutical, biotech, and industrial equipment.
+                    </p>
+                </div>
+            </div>
+
+            <div className="fac-marquee-wrap">
+                <MarqueeRow items={validations} reverse />
+                <MarqueeRow items={[...validations].reverse()} />
+            </div>
+
+            <div className="container">
+                <div className="fac-count-strip">
+                    {validations.map((v) => (
+                        <div key={v.id} className="fcs-pill">
+                            <span className="fcs-dot" />
+                            <span>{v.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* divider */}
+        <div className="container">
+            <div className="divider" />
+        </div>
+
+        {/* ── HYGRO THERMAL QUALIFICATIONS ── */}
+        <section className="section fac-section">
+            <div className="container">
+                <div className="section-header center fac-header">
+                    <div className="section-tag">Environmental Qualification</div>
+                    <h2 className="section-title">
+                        Hygro Thermal <span>Qualifications</span>
+                    </h2>
+                    <p className="section-subtitle" style={{ margin: '0 auto' }}>
+                        Mapping and qualification of temperature & humidity-sensitive storage areas.
+                    </p>
+                </div>
+                <div className="fac-feature-grid">
+                    {hygroThermal.map((item) => (
+                        <div key={item.id} className="fac-feature-card glass-card">
+                            <span className="fac-feature-icon">{item.icon}</span>
+                            <span className="fac-feature-num">{item.id}</span>
+                            <h3 className="fac-feature-name">{item.name}</h3>
+                            <p className="fac-feature-sub">Hygro Thermal Qualification</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* divider */}
+        <div className="container">
+            <div className="divider" />
+        </div>
+
+        {/* ── OTHER FACILITIES ── */}
+        <section className="section fac-section">
+            <div className="container">
+                <div className="section-header center fac-header">
+                    <div className="section-tag">Additional Services</div>
+                    <h2 className="section-title">
+                        Other Facilities <span>We Offer</span>
+                    </h2>
+                    <p className="section-subtitle" style={{ margin: '0 auto' }}>
+                        Comprehensive support services to complement our calibration and validation capabilities.
+                    </p>
+                </div>
+                <div className="fac-feature-grid fac-feature-grid--wide">
+                    {otherFacilities.map((item) => (
+                        <div key={item.id} className="fac-feature-card glass-card">
+                            <span className="fac-feature-icon">{item.icon}</span>
+                            <span className="fac-feature-num">{item.id}</span>
+                            <h3 className="fac-feature-name">{item.name}</h3>
+                            <p className="fac-feature-sub">Additional Facility</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* ── CAPABILITIES BANNER ── */}
         <section className="section cap-section">
             <div className="container">
                 <div className="cap-banner glass-card">
@@ -161,18 +346,17 @@ const Facilities = () => (
                         </h2>
                         <p className="section-subtitle">
                             We're constantly investing in new equipment and expanding our scope of accreditation
-                            to meet the growing needs of industries. Contact us to learn about upcoming facilities
-                            and new calibration services.
+                            to meet the growing needs of industries. Contact us to learn about upcoming facilities.
                         </p>
                     </div>
                     <div className="cap-stats">
                         <div className="cap-stat">
-                            <div className="stat-number">8+</div>
-                            <div className="stat-label">Facilities Nationwide</div>
+                            <div className="stat-number">9+</div>
+                            <div className="stat-label">Calibration Disciplines</div>
                         </div>
                         <div className="cap-stat">
-                            <div className="stat-number">500+</div>
-                            <div className="stat-label">Parameters Covered</div>
+                            <div className="stat-number">9+</div>
+                            <div className="stat-label">Validation Services</div>
                         </div>
                         <div className="cap-stat">
                             <div className="stat-number">NABL</div>
@@ -186,3 +370,4 @@ const Facilities = () => (
 );
 
 export default Facilities;
+
