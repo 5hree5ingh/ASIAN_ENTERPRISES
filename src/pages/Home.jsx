@@ -1,92 +1,154 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import CaliperGraphic from '../components/CaliperGraphic';
 import AboutMain from './AboutMain';
 import Facilities from './Facilities';
 
+/* ── Animated counter hook ── */
+const useCountUp = (end, duration = 2000, delay = 0) => {
+    const [count, setCount] = useState(0);
+    const [started, setStarted] = useState(false);
 
+    const start = useCallback(() => {
+        if (started) return;
+        setStarted(true);
 
-const highlights = [
-    { number: '20+', label: 'Years Experience' },
-    { number: '375', label: 'Instruments Calibrated' },
-    { number: '750', label: 'Satisfied Clients' },
-];
+        const startTime = performance.now() + delay;
+        const step = (now) => {
+            const elapsed = now - startTime;
+            if (elapsed < 0) { requestAnimationFrame(step); return; }
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutQuart for a satisfying deceleration
+            const eased = 1 - Math.pow(1 - progress, 4);
+            setCount(Math.floor(eased * end));
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }, [end, duration, delay, started]);
+
+    return [count, start];
+};
+
+/* ── CountUp component with IntersectionObserver ── */
+const CountUp = ({ end, suffix = '', duration = 2000, delay = 0 }) => {
+    const [count, start] = useCountUp(end, duration, delay);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => { if (entry.isIntersecting) { start(); observer.disconnect(); } },
+            { threshold: 0.3 }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [start]);
+
+    return <span ref={ref}>{count}{suffix}</span>;
+};
 
 const Home = () => {
     return (
         <div className="home page-enter">
             {/* ─── HERO ─── */}
             <section id="home-hero" className="hero">
-                <div className="bg-grid" />
-                <div className="glow-orb hero-orb1" />
-                <div className="glow-orb hero-orb2" />
+                {/* Full-screen bg image */}
+                <div className="hero-bg" />
+                {/* Gradient overlay for text legibility */}
+                <div className="hero-overlay" />
 
-                <div className="hero-inner container">
-                    {/* Left: Text Content */}
-                    <div className="hero-content">
-                        <div className="hero-badge">
-                            <span className="badge-dot" />
-                            Precision Measurement Specialists
-                        </div>
-                        <h1 className="hero-title">
-                            Calibration and
-                            <br />
-                            <span className="hero-gradient">Validation Facilities.</span>
-                        </h1>
-                        <p className="hero-desc">
-                            Asian Enterprises delivers world-class calibration, maintenance, and repair services
-                            for precision measuring instruments. From Vernier calipers to advanced gauge meters —
-                            we ensure your instruments meet the highest standards of accuracy.
-                        </p>
-                        <div className="hero-actions">
-                            <a
-                                href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20%F0%9F%91%8B%0A%0AI%20am%20interested%20in%20your%20precision%20calibration%20and%20measurement%20services.%0A%0ACould%20you%20please%20provide%20a%20quote%20for%20my%20requirements%3F%0A%0AThank%20you!"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-primary"
-                            >
-                                <span>Get a Free Quote</span>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </a>
-                            <a
-                                href="#facilities-section"
-                                className="btn-outline"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById('facilities-section')?.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                            >
-                                Our Facilities
-                            </a>
-                        </div>
+                {/* Floating badge */}
+                <div className="hero-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    ISO/IEC 17025 &amp; NABL Accredited
+                </div>
 
-                        {/* Stats */}
-                        <div className="hero-stats">
-                            {highlights.map((h, i) => (
-                                <div key={i} className="hero-stat">
-                                    <div className="stat-number">{h.number}</div>
-                                    <div className="stat-label">{h.label}</div>
-                                </div>
-                            ))}
-                        </div>
+                {/* Hero content — left aligned */}
+                <div className="hero-content">
+                    <h1 className="hero-title">
+                        Precision<br />
+                        Calibration<br />
+                        <span className="hero-title-accent">Services</span>
+                    </h1>
+                    <p className="hero-subtitle">
+                        Delivering world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet
+                        the highest accuracy standards.
+                    </p>
+
+                    <div className="hero-actions">
+                        <a
+                            href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20%F0%9F%91%8B%0A%0AI%20am%20interested%20in%20your%20precision%20calibration%20and%20measurement%20services.%0A%0ACould%20you%20please%20provide%20a%20quote%20for%20my%20requirements%3F%0A%0AThank%20you!"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hero-btn-primary"
+                        >
+                            Get a Free Quote
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <Link to="/about" className="hero-btn-outline">
+                            Learn More
+                        </Link>
                     </div>
 
-                    {/* Right: 3D Caliper Graphic */}
-                    <div className="hero-graphic">
-                        <CaliperGraphic />
+                    {/* Stats row — animated counters */}
+                    <div className="hero-stats">
+                        <div className="hero-stat">
+                            <span className="hero-stat-number">
+                                <CountUp end={25} suffix="+" duration={2000} />
+                            </span>
+                            <span className="hero-stat-label">Years Experience</span>
+                        </div>
+                        <div className="hero-stat-divider" />
+                        <div className="hero-stat">
+                            <span className="hero-stat-number">
+                                <CountUp end={750} suffix="+" duration={2000} delay={200} />
+                            </span>
+                            <span className="hero-stat-label">Satisfied Clients</span>
+                        </div>
+                        <div className="hero-stat-divider" />
+                        <div className="hero-stat">
+                            <span className="hero-stat-number">
+                                <CountUp end={5000} suffix="+" duration={2500} delay={400} />
+                            </span>
+                            <span className="hero-stat-label">Calibrations / Year</span>
+                        </div>
                     </div>
                 </div>
 
-                <div className="hero-scroll-hint">
-                    <div className="scroll-arrow" />
+                {/* Scroll indicator */}
+                <div className="hero-scroll-indicator">
+                    <div className="scroll-line" />
+                    <span className="scroll-text">Scroll</span>
                 </div>
             </section>
 
+            {/* ─── SERVICES STRIP ─── */}
+            <section className="services-strip">
+                <div className="container services-strip-inner">
+                    {[
+                        { icon: '⚙️', title: 'Dimensional', desc: 'Calipers, Micrometers, Gauges' },
+                        { icon: '🌡️', title: 'Thermal', desc: 'Temperature & Humidity' },
+                        { icon: '⚡', title: 'Electrical', desc: 'Multimeters, Clamp Meters' },
+                        { icon: '💪', title: 'Mechanical', desc: 'Force, Torque, Pressure' },
+                    ].map((svc, i) => (
+                        <div key={i} className="service-strip-card">
+                            <span className="ssc-icon">{svc.icon}</span>
+                            <div>
+                                <div className="ssc-title">{svc.title}</div>
+                                <div className="ssc-desc">{svc.desc}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-            {/* ─── WHY CHOOSE US (About Main) ─── */}
+            {/* ─── WHY CHOOSE US ─── */}
             <AboutMain />
 
             {/* ─── FACILITIES ─── */}

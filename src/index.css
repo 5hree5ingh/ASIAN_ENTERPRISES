@@ -1,24 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --primary: #1a56db;
-  --primary-dark: #0d2957;
-  --primary-mid: #1e3a8a;
-  --primary-light: #3b82f6;
-  --primary-glow: #60a5fa;
-  --accent: #06b6d4;
-  --accent-light: #67e8f9;
-  --bg-deep: #040d1a;
-  --bg-dark: #071428;
-  --bg-card: #0b1e3d;
-  --bg-card2: #0f2554;
+  --primary: #0d47a1;
+  --primary-dark: #0a3178;
+  --primary-mid: #1565c0;
+  --primary-light: #42a5f5;
+  --primary-glow: #90caf9;
+  --accent: #1e88e5;
+  --accent-light: #bbdefb;
+  --bg-deep: #061b3d;
+  --bg-dark: #082655;
+  --bg-card: #0d3272;
+  --bg-card2: #103d8a;
   --text-white: #ffffff;
-  --text-light: #e2e8f0;
-  --text-muted: #94a3b8;
-  --border: rgba(59, 130, 246, 0.25);
-  --border-bright: rgba(96, 165, 250, 0.5);
-  --shadow-glow: 0 0 40px rgba(26, 86, 219, 0.3);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --text-light: #e3f2fd;
+  --text-muted: #90a4ae;
+  --border: rgba(66, 165, 245, 0.25);
+  --border-bright: rgba(144, 202, 249, 0.5);
+  --shadow-glow: 0 0 40px rgba(13, 71, 161, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
   --radius: 12px;
   --radius-lg: 20px;
   font-family: 'Inter', 'Outfit', sans-serif;
@@ -94,7 +94,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(26, 86, 219, 0.15);
+  background: rgba(13, 71, 161, 0.12);
   border: 1px solid var(--border);
   border-radius: 50px;
   padding: 6px 18px;
@@ -132,7 +132,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
   color: #fff;
   padding: 14px 32px;
   border-radius: var(--radius);
@@ -141,7 +141,7 @@ img {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(26, 86, 219, 0.4);
+  box-shadow: 0 4px 20px rgba(13, 71, 161, 0.4);
   position: relative;
   overflow: hidden;
 }
@@ -150,7 +150,7 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  background: linear-gradient(135deg, #2d3748, #1a202c);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -161,7 +161,7 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(26, 86, 219, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .btn-primary span {
@@ -191,8 +191,8 @@ img {
 }
 
 .btn-outline:hover {
-  background: rgba(59, 130, 246, 0.15);
-  border-color: var(--primary-light);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
