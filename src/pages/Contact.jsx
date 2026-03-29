@@ -180,7 +180,7 @@ const Contact = () => {
             </section>
 
             {/* Branches */}
-            <section className="section" style={{ background: 'var(--bg-dark)', paddingTop: '0' }}>
+            <section className="section" style={{ background: 'var(--bg-page)', paddingTop: '0' }}>
                 <div className="container">
                     <div className="section-header center" style={{ marginBottom: '50px' }}>
                         <div className="section-tag">Our Branches</div>

@@ -1,3 +1,4 @@
+/* Partners — White/Blue theme */
 .partners-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -9,14 +10,24 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    background: #fff;
+    border: 1px solid rgba(33,150,243,0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s;
+}
+
+.partner-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(33,150,243,0.3);
+    transform: translateY(-4px);
 }
 
 .partner-logo {
     width: 52px;
     height: 52px;
-    background: linear-gradient(135deg, rgba(26, 86, 219, 0.25), rgba(26, 86, 219, 0.1));
-    border: 1px solid var(--border);
+    background: var(--blue-50);
+    border: 1px solid rgba(33,150,243,0.2);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -26,14 +37,14 @@
 }
 
 .partner-card:hover .partner-logo {
-    background: linear-gradient(135deg, rgba(26, 86, 219, 0.4), rgba(26, 86, 219, 0.2));
-    border-color: var(--border-bright);
+    background: var(--blue-100);
+    border-color: var(--blue-400);
 }
 
 .partner-abbr {
     font-size: 0.72rem;
     font-weight: 800;
-    color: var(--primary-glow);
+    color: var(--blue-700);
     letter-spacing: 0.5px;
     text-align: center;
 }
@@ -41,7 +52,7 @@
 .partner-name {
     font-size: 0.88rem;
     font-weight: 700;
-    color: var(--text-white);
+    color: var(--text-dark);
     margin-bottom: 3px;
 }
 
@@ -60,23 +71,31 @@
 .industry-card {
     padding: 28px 20px;
     text-align: center;
+    background: #fff;
+    border: 1px solid rgba(33,150,243,0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
 }
 
-.ind-icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
+.industry-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(33,150,243,0.28);
+    transform: translateY(-4px);
 }
+
+.ind-icon { font-size: 2rem; margin-bottom: 12px; }
 
 .ind-name {
     font-size: 0.92rem;
     font-weight: 700;
-    color: var(--text-white);
+    color: var(--text-dark);
     margin-bottom: 6px;
 }
 
 .ind-count {
     font-size: 0.78rem;
-    color: var(--primary-glow);
+    color: var(--blue-600);
     font-weight: 600;
 }
 
@@ -90,16 +109,24 @@
 .testimonial-card {
     padding: 36px 32px;
     position: relative;
+    background: #fff;
+    border: 1px solid rgba(33,150,243,0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
 }
 
-.testi-quote {
-    color: rgba(26, 86, 219, 0.4);
-    margin-bottom: 20px;
+.testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(33,150,243,0.28);
+    transform: translateY(-4px);
 }
+
+.testi-quote { color: rgba(33,150,243,0.35); margin-bottom: 20px; }
 
 .testi-text {
     font-size: 0.95rem;
-    color: var(--text-light);
+    color: var(--text-body);
     line-height: 1.8;
     margin-bottom: 28px;
     font-style: italic;
@@ -109,14 +136,14 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(33,150,243,0.1);
     padding-top: 20px;
 }
 
 .testi-avatar {
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(135deg, var(--blue-800), var(--blue-500));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -127,24 +154,10 @@
     flex-shrink: 0;
 }
 
-.testi-name {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-white);
-}
-
-.testi-role {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-top: 3px;
-}
+.testi-name { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+.testi-role { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
 
 @media (max-width: 600px) {
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
 }

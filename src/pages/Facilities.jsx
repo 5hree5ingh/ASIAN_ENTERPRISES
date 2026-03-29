@@ -70,20 +70,20 @@ const calibrations = [
 
 /* ─── HYGRO THERMAL DATA ─────────────────────────────────── */
 const hygroThermal = [
-    { id: '01', name: 'RM / FG Stores', icon: '🏭' },
-    { id: '02', name: 'Warehouse', icon: '🏢' },
-    { id: '03', name: 'Quarantine Areas', icon: '🔒' },
-    { id: '04', name: 'Cold Stores', icon: '❄️' },
+    { id: '01', name: 'RM / FG Stores', sub: 'Raw material & finished goods storage mapping' },
+    { id: '02', name: 'Warehouse', sub: 'Large-area temperature & humidity qualification' },
+    { id: '03', name: 'Quarantine Areas', sub: 'Controlled zone environmental monitoring' },
+    { id: '04', name: 'Cold Stores', sub: 'Cold chain & refrigerated area mapping' },
 ];
 
 /* ─── OTHER FACILITIES DATA ──────────────────────────────── */
 const otherFacilities = [
-    { id: '01', name: 'HVAC & Clean Room Test', icon: '💨' },
-    { id: '02', name: 'Steam Quality Test', icon: '♨️' },
-    { id: '03', name: 'Compressed Air Validation', icon: '🔧' },
-    { id: '04', name: 'PLC Validation & VFD Repair', icon: '⚡' },
-    { id: '05', name: 'Measuring Instruments Supply', icon: '📐' },
-    { id: '06', name: 'Repair of Mechanical Instruments', icon: '🔩' },
+    { id: '01', name: 'HVAC & Clean Room Test', sub: 'Airflow, pressure differential & particle count testing' },
+    { id: '02', name: 'Steam Quality Test', sub: 'Dryness fraction, superheat & non-condensable gas testing' },
+    { id: '03', name: 'Compressed Air Validation', sub: 'Purity, pressure, dew point & particulate validation' },
+    { id: '04', name: 'PLC Validation & VFD Repair', sub: 'Automation system validation & drive servicing' },
+    { id: '05', name: 'Measuring Instruments Supply', sub: 'Supply of calibrated precision measurement instruments' },
+    { id: '06', name: 'Repair of Mechanical Instruments', sub: 'Expert repair and refurbishment of gauges & instruments' },
 ];
 
 
@@ -295,10 +295,9 @@ const Facilities = ({ embedded = false }) => (
                 <div className="fac-feature-grid">
                     {hygroThermal.map((item) => (
                         <div key={item.id} className="fac-feature-card glass-card">
-                            <span className="fac-feature-icon">{item.icon}</span>
                             <span className="fac-feature-num">{item.id}</span>
                             <h3 className="fac-feature-name">{item.name}</h3>
-                            <p className="fac-feature-sub">Hygro Thermal Qualification</p>
+                            <p className="fac-feature-sub">{item.sub}</p>
                         </div>
                     ))}
                 </div>
@@ -325,10 +324,9 @@ const Facilities = ({ embedded = false }) => (
                 <div className="fac-feature-grid fac-feature-grid--wide">
                     {otherFacilities.map((item) => (
                         <div key={item.id} className="fac-feature-card glass-card">
-                            <span className="fac-feature-icon">{item.icon}</span>
                             <span className="fac-feature-num">{item.id}</span>
                             <h3 className="fac-feature-name">{item.name}</h3>
-                            <p className="fac-feature-sub">Additional Facility</p>
+                            <p className="fac-feature-sub">{item.sub}</p>
                         </div>
                     ))}
                 </div>
