@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import './Gallery.css';
 
 /* ── All company images ─────────────────────────── */
@@ -164,8 +165,8 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* ── Lightbox ──────────────────────────────────────────── */}
-      {selected && (
+      {/* ── Lightbox (portal to body to escape parent transform) ── */}
+      {selected && ReactDOM.createPortal(
         <div className="lightbox" onClick={closeLightbox}>
           <button className="lb-close" onClick={closeLightbox} aria-label="Close">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -200,7 +201,8 @@ const Gallery = () => {
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

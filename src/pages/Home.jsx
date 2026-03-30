@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import './Home.css';
+import './Gallery.css';
 
 /* ── Gallery preview images (10 best shots) ── */
 const GALLERY_PREVIEW = [
@@ -129,6 +131,44 @@ const services = [
 ];
 
 const Home = () => {
+    const [selected, setSelected] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+
+    const openLightbox = (item, idx) => {
+        setSelected(item);
+        setSelectedIndex(idx);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setSelected(null);
+        setSelectedIndex(null);
+        document.body.style.overflow = '';
+    };
+
+    const navigateLightbox = useCallback(
+        dir => {
+            if (selectedIndex === null) return;
+            const next = (selectedIndex + dir + GALLERY_PREVIEW.length) % GALLERY_PREVIEW.length;
+            setSelected(GALLERY_PREVIEW[next]);
+            setSelectedIndex(next);
+        },
+        [selectedIndex]
+    );
+
+    useEffect(() => {
+        const handler = e => {
+            if (!selected) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+    }, [selected, navigateLightbox]);
+
+    useEffect(() => () => { document.body.style.overflow = ''; }, []);
+
     return (
         <div className="home page-enter">
 
@@ -476,6 +516,8 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.07, duration: 0.5 }}
                                 whileHover={{ scale: 1.03, zIndex: 2 }}
+                                onClick={() => openLightbox(img, i)}
+                                style={{ cursor: 'pointer' }}
                             >
                                 <img src={img.src} alt={img.label} className="hg-img" loading="lazy" />
                                 <div className="hg-overlay">
@@ -524,6 +566,43 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            {/* ── Lightbox (portal to body) ── */}
+            {selected && ReactDOM.createPortal(
+                <div className="lightbox" onClick={closeLightbox}>
+                    <button className="lb-close" onClick={closeLightbox} aria-label="Close">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <button className="lb-nav lb-prev" onClick={e => { e.stopPropagation(); navigateLightbox(-1); }} aria-label="Previous">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+
+                    <div className="lb-card" onClick={e => e.stopPropagation()}>
+                        <div className="lb-visual">
+                            <img src={selected.src} alt={selected.label} className="lb-img" />
+                        </div>
+                        <div className="lb-info">
+                            <h3 className="lb-title">{selected.label}</h3>
+                            <p className="lb-desc">
+                                Professional documentation of Asian Enterprises' precision calibration processes
+                                and laboratory infrastructure.
+                            </p>
+                            <div className="lb-counter">{selectedIndex + 1} / {GALLERY_PREVIEW.length}</div>
+                        </div>
+                    </div>
+
+                    <button className="lb-nav lb-next" onClick={e => { e.stopPropagation(); navigateLightbox(1); }} aria-label="Next">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>,
+                document.body
+            )}
         </div>
     );
 };
