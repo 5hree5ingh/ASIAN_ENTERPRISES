@@ -1,0 +1,174 @@
+/* ══════════════════════════════════════════════════
+   TESTIMONIALS — Guaranteed zero layout shift
+   Pills are fixed circles. Only CSS transforms used
+   for active/hover state — no width/height changes.
+══════════════════════════════════════════════════ */
+
+.testimonials-unique {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 80px 0 60px;
+}
+
+/* ── Fixed-height quote box ────────────────────── */
+.tu-quote-wrap {
+  position: relative;
+  padding: 0 50px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  /* Tall enough for the longest quote — never moves anything below */
+  min-height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tu-quote-mark {
+  position: absolute;
+  font-size: 5.5rem;
+  font-family: 'Georgia', serif;
+  color: var(--blue-300);
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.tu-quote-mark--open  { top: -28px;  left: -4px; }
+.tu-quote-mark--close { bottom: -36px; right: -4px; }
+
+.tu-quote-text {
+  font-size: clamp(1.1rem, 2.6vw, 1.55rem);
+  font-weight: 400;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.75;
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
+}
+.tu-quote-text--animating {
+  opacity: 0;
+  filter: blur(5px);
+  transform: scale(0.985);
+}
+
+/* ── Fixed-height company label ────────────────── */
+.tu-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  /* Fixed height — never shifts pills below */
+  height: 44px;
+  justify-content: center;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.tu-label--animating {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.tu-company {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--blue-800);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.tu-industry {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ── Pills row ─────────────────────────────────── */
+.tu-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Pills row itself has a fixed height = avatar size + nothing else */
+  height: 64px;
+}
+.tu-pills::-webkit-scrollbar { display: none; }
+
+/* ── Each pill — circle button, fixed 52px always ── */
+.tu-pill {
+  /* Exact same size whether active or not — zero layout impact */
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  /* Only transform — never affects surrounding layout */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tu-pill:not(.tu-pill--active):hover {
+  transform: scale(1.1);
+}
+
+/* ── Avatar image inside pill ── */
+.tu-avatar-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2.5px solid rgba(33, 150, 243, 0.18);
+  box-shadow: 0 2px 8px rgba(13, 39, 87, 0.07);
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Active — blue ring via box-shadow on the img, scale via transform on pill */
+.tu-pill--active {
+  transform: scale(1.13);
+}
+.tu-pill--active .tu-avatar-img {
+  border-color: var(--blue-700);
+  border-width: 3px;
+  box-shadow:
+    0 0 0 4px rgba(21, 101, 192, 0.15),
+    0 4px 18px rgba(13, 71, 161, 0.25);
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .tu-pill        { width: 46px; height: 46px; }
+  .tu-avatar-img  { width: 46px; height: 46px; }
+  .tu-pills       { height: 58px; gap: 8px; }
+}
+
+@media (max-width: 768px) {
+  .testimonials-unique { padding: 60px 0 40px; gap: 26px; }
+  .tu-quote-wrap  { padding: 0 28px; min-height: 190px; }
+  .tu-quote-mark  { font-size: 4rem; }
+  .tu-pill        { width: 42px; height: 42px; }
+  .tu-avatar-img  { width: 42px; height: 42px; }
+  .tu-pills       { height: 54px; gap: 7px; }
+}
+
+@media (max-width: 480px) {
+  .testimonials-unique { padding: 50px 0 30px; gap: 22px; }
+  .tu-quote-wrap  { padding: 0 18px; min-height: 210px; }
+  .tu-quote-text  { font-size: 1rem; }
+  .tu-pill        { width: 36px; height: 36px; }
+  .tu-avatar-img  { width: 36px; height: 36px; }
+  .tu-pills       { height: 46px; gap: 5px; }
+}

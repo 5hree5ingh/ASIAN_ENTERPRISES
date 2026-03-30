@@ -235,7 +235,7 @@ const Navbar = () => {
     /* ── Scroll-spy via IntersectionObserver ── */
     useEffect(() => {
         if (!isHome) return;
-        const ids = ['home', 'about', 'calibration', 'validation', 'gallery'];
+        const ids = ['home', 'about', 'calibration', 'validation', 'gallery', 'partners', 'contact'];
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
@@ -349,10 +349,24 @@ const Navbar = () => {
                         )}
                     </li>
                     <li>
-                        <Link to="/partners" className={`nav-link ${location.pathname === '/partners' ? 'active' : ''}`}>Partners</Link>
+                        {isHome ? (
+                            <button onClick={() => scrollTo('partners')}
+                                className={`nav-link nav-link-btn ${isHome && activeSection === 'partners' ? 'active' : ''}`}>
+                                Partners
+                            </button>
+                        ) : (
+                            <Link to="/partners" className={`nav-link ${location.pathname === '/partners' ? 'active' : ''}`}>Partners</Link>
+                        )}
                     </li>
                     <li>
-                        <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>Contact Us</Link>
+                        {isHome ? (
+                            <button onClick={() => scrollTo('contact')}
+                                className={`nav-link nav-link-btn ${isHome && activeSection === 'contact' ? 'active' : ''}`}>
+                                Contact Us
+                            </button>
+                        ) : (
+                            <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>Contact Us</Link>
+                        )}
                     </li>
                 </ul>
 
@@ -468,8 +482,16 @@ const Navbar = () => {
                 </div>
 
                 <Link to="/gallery"  className={`mobile-link ${location.pathname === '/gallery'  ? 'active' : ''}`}>Gallery</Link>
-                <Link to="/partners" className={`mobile-link ${location.pathname === '/partners' ? 'active' : ''}`}>Partners</Link>
-                <Link to="/contact"  className={`mobile-link ${location.pathname === '/contact'  ? 'active' : ''}`}>Contact Us</Link>
+                {isHome ? (
+                    <button className="mobile-link" onClick={() => { scrollTo('partners'); setMenuOpen(false); }}>Partners</button>
+                ) : (
+                    <Link to="/partners" className={`mobile-link ${location.pathname === '/partners' ? 'active' : ''}`}>Partners</Link>
+                )}
+                {isHome ? (
+                    <button className="mobile-link" onClick={() => { scrollTo('contact'); setMenuOpen(false); }}>Contact Us</button>
+                ) : (
+                    <Link to="/contact" className={`mobile-link ${location.pathname === '/contact'  ? 'active' : ''}`}>Contact Us</Link>
+                )}
 
                 <a
                     href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20I%20am%20interested%20in%20your%20calibration%20services."

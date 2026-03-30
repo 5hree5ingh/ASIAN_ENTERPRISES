@@ -9,7 +9,7 @@ const contactInfo = [
             </svg>
         ),
         label: 'Head Office',
-        value: 'Asian Enterprises, Industrial Area, Andheri East, Mumbai - 400 093, Maharashtra',
+        value: 'Plot -2A, Shivani puram-2, Jamalpur kalan, Jagjeetpur Road, Raja Garden, Haridwar -249407(U.K) India',
     },
     {
         icon: (
@@ -18,7 +18,7 @@ const contactInfo = [
             </svg>
         ),
         label: 'Phone',
-        value: '+91 22 4567 8900 | +91 98765 43210',
+        value: '+91 97601 88223 | +91 94111 11480',
     },
     {
         icon: (
@@ -28,7 +28,7 @@ const contactInfo = [
             </svg>
         ),
         label: 'Email',
-        value: 'info@asianenterprises.in | services@asianenterprises.in',
+        value: 'asianhdr@yahoo.com | asian_e@yahoo.com',
     },
     {
         icon: (
@@ -188,7 +188,7 @@ const Contact = () => {
                     </div>
                     <div className="branches-grid">
                         {[
-                            { city: 'Mumbai', type: 'Head Office', addr: 'Andheri East, Mumbai – 400 093', phone: '+91 22 4567 8900' },
+                            { city: 'Haridwar', type: 'Head Office', addr: 'Raja Garden, Haridwar -249407(U.K)', phone: '+91 97601 88223' },
                             { city: 'Pune', type: 'Branch Office', addr: 'Pimpri-Chinchwad, Pune – 411 019', phone: '+91 20 6789 0123' },
                             { city: 'Nashik', type: 'Lab Centre', addr: 'MIDC Ambad, Nashik – 422 010', phone: '+91 253 234 5678' },
                             { city: 'Aurangabad', type: 'Lab Centre', addr: 'Chikalthana MIDC, Aurangabad – 431 006', phone: '+91 240 234 5678' },

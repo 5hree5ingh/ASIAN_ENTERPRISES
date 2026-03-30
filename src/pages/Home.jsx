@@ -2,8 +2,73 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
+import Testimonials from '../components/Testimonials';
 import './Home.css';
 import './Gallery.css';
+import './Contact.css';
+
+/* ── Inline contact form for Home page ── */
+function HomeContactForm() {
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleSubmit = e => { e.preventDefault(); setSubmitted(true); };
+  if (submitted) {
+    return (
+      <div className="contact-form-box glass-card">
+        <div className="form-success">
+          <div className="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Enquiry Received!</h3>
+          <p>Thank you for reaching out. Our team will contact you within 24 business hours.</p>
+          <button className="btn-outline" onClick={() => setSubmitted(false)}>Send Another Enquiry</button>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="contact-form-box glass-card">
+      <h3 className="form-title">Request a Quote</h3>
+      <p className="form-sub">Fill the form and our team will get back to you shortly.</p>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <div className="form-group"><label>Your Name *</label><input type="text" name="name" required placeholder="John Doe" value={form.name} onChange={handleChange} /></div>
+          <div className="form-group"><label>Company Name</label><input type="text" name="company" placeholder="ACME Corp." value={form.company} onChange={handleChange} /></div>
+        </div>
+        <div className="form-row">
+          <div className="form-group"><label>Email Address *</label><input type="email" name="email" required placeholder="john@company.com" value={form.email} onChange={handleChange} /></div>
+          <div className="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} /></div>
+        </div>
+        <div className="form-group">
+          <label>Service Required *</label>
+          <select name="service" required value={form.service} onChange={handleChange}>
+            <option value="">Select a service...</option>
+            <option>Dimensional Calibration</option>
+            <option>Pressure Calibration</option>
+            <option>Temperature Calibration</option>
+            <option>Torque Calibration</option>
+            <option>Electrical Calibration</option>
+            <option>Mass & Volume Calibration</option>
+            <option>On-site Calibration</option>
+            <option>Annual Maintenance Contract</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Message / Details</label>
+          <textarea name="message" rows="4" placeholder="Describe your requirement, number of instruments, timeline, etc." value={form.message} onChange={handleChange} />
+        </div>
+        <button type="submit" className="btn-primary form-submit">
+          <span>Send Enquiry</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+        </button>
+      </form>
+    </div>
+  );
+}
 
 /* ── Gallery preview images (10 best shots) ── */
 const GALLERY_PREVIEW = [
@@ -537,6 +602,97 @@ const Home = () => {
                             </Link>
                         </div>
                     </FadeInSection>
+                </div>
+            </section>
+
+            {/* ─── TRUSTED PARTNERS — TESTIMONIALS ─── */}
+            <section id="partners" className="section" style={{ background: '#ffffff' }}>
+                <div className="container">
+                    <FadeInSection>
+                        <div className="section-header center">
+                            <div className="section-tag">Trusted Partners</div>
+                            <h2 className="section-title">What Our <span>Clients Say</span></h2>
+                            <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
+                                Leading companies across automotive, aerospace, pharma, and engineering
+                                trust Asian Enterprises for precision calibration.
+                            </p>
+                        </div>
+                    </FadeInSection>
+                    <FadeInSection delay={0.15}>
+                        <Testimonials />
+                    </FadeInSection>
+                    <FadeInSection delay={0.25}>
+                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                            <Link to="/partners" className="btn-primary" style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }}>
+                                <span>View All Partners</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </FadeInSection>
+                </div>
+            </section>
+
+            {/* ─── CONTACT US SECTION ─── */}
+            <section id="contact" className="section" style={{ background: 'var(--bg-page)' }}>
+                <div className="container">
+                    <FadeInSection>
+                        <div className="section-header center" style={{ marginBottom: '56px' }}>
+                            <div className="section-tag">Get In Touch</div>
+                            <h2 className="section-title">Let's Discuss Your <span>Calibration Needs</span></h2>
+                            <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
+                                Reach out for a free consultation. Our team responds within 24 business hours.
+                            </p>
+                        </div>
+                    </FadeInSection>
+
+                    <div className="contact-grid">
+                        {/* Info */}
+                        <FadeInSection delay={0.1}>
+                            <div className="contact-info">
+                                <h3 className="contact-info-title">Contact Information</h3>
+                                <p className="contact-info-sub">For urgent calibration needs, call us directly.</p>
+                                <div className="contact-cards">
+                                    {[
+                                        {
+                                            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>,
+                                            label: 'Head Office',
+                                            value: 'Plot -2A, Shivani puram-2, Jamalpur kalan, Jagjeetpur Road, Raja Garden, Haridwar -249407(U.K) India',
+                                        },
+                                        {
+                                            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.1 19.79 19.79 0 01.01 2.37a2 2 0 011.99-2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.44 2.03L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.03-.44c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z" /></svg>,
+                                            label: 'Phone',
+                                            value: '+91 97601 88223 | +91 94111 11480',
+                                        },
+                                        {
+                                            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>,
+                                            label: 'Email',
+                                            value: 'asianhdr@yahoo.com | asian_e@yahoo.com',
+                                        },
+                                        {
+                                            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>,
+                                            label: 'Working Hours',
+                                            value: 'Mon – Sat: 9:00 AM – 6:00 PM',
+                                        },
+                                    ].map((c, i) => (
+                                        <div key={i} className="contact-card glass-card">
+                                            <div className="cc-icon">{c.icon}</div>
+                                            <div>
+                                                <div className="cc-label">{c.label}</div>
+                                                <div className="cc-value">{c.value}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </FadeInSection>
+
+                        {/* Form */}
+                        <FadeInSection delay={0.2}>
+                            <HomeContactForm />
+                        </FadeInSection>
+                    </div>
                 </div>
             </section>
 
