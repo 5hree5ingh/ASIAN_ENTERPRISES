@@ -256,7 +256,7 @@ const Home = () => {
                             <span className="hero-brand-tag">Asian Enterprises</span>
                             Asian<br />
                             Calibration<br />
-                            <span className="hero-title-accent">Services</span>
+                            <span className="hero-title-accent">Pvt Ltd</span>
                         </h1>
                     </div>
 
