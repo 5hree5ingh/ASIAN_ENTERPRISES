@@ -5,24 +5,24 @@ import './Gallery.css';
 /* ── All company images ─────────────────────────── */
 const ALL_IMAGES = [
   /* Calibration Lab */
-  { id: 1,  src: '/images/company_images/C1.png',  label: 'Temperature Calibration Lab', cat: 'Calibration Lab', wide: true  },
-  { id: 2,  src: '/images/company_images/C2.png',  label: 'Lab Overview – Nashik Facility', cat: 'Calibration Lab'              },
-  { id: 3,  src: '/images/company_images/C3.png',  label: 'Calibration Bench – Side View', cat: 'Calibration Lab'              },
+  { id: 1,  src: '/images/company_images/C1.png',  label: 'Temperature Calibration Lab', cat: 'Calibration Lab' },
+  { id: 2,  src: '/images/company_images/C2.png',  label: 'Lab Overview – Nashik Facility', cat: 'Calibration Lab' },
+  { id: 3,  src: '/images/company_images/C3.png',  label: 'Calibration Bench – Side View', cat: 'Calibration Lab' },
 
   /* Instruments */
-  { id: 4,  src: '/images/company_images/C4.png',  label: 'Precision Instruments',       cat: 'Instruments',     wide: true  },
-  { id: 5,  src: '/images/company_images/C5.png',  label: 'Measurement Tools',           cat: 'Instruments'                  },
-  { id: 6,  src: '/images/company_images/C6.png',  label: 'Reference Standards',         cat: 'Instruments'                  },
+  { id: 4,  src: '/images/company_images/C4.png',  label: 'Precision Instruments',       cat: 'Instruments' },
+  { id: 5,  src: '/images/company_images/C5.png',  label: 'Measurement Tools',           cat: 'Instruments' },
+  { id: 6,  src: '/images/company_images/C6.png',  label: 'Reference Standards',         cat: 'Instruments' },
 
   /* Equipment */
-  { id: 7,  src: '/images/company_images/C7.png',  label: 'Calibration Equipment',       cat: 'Equipment',       wide: true  },
-  { id: 8,  src: '/images/company_images/C8.png',  label: 'Equipment Room',              cat: 'Equipment'                    },
-  { id: 9,  src: '/images/company_images/C9.png',  label: 'Thermal Calibration Unit',    cat: 'Equipment'                    },
+  { id: 7,  src: '/images/company_images/C7.png',  label: 'Calibration Equipment',       cat: 'Equipment' },
+  { id: 8,  src: '/images/company_images/C8.png',  label: 'Equipment Room',              cat: 'Equipment' },
+  { id: 9,  src: '/images/company_images/C9.png',  label: 'Thermal Calibration Unit',    cat: 'Equipment' },
 
   /* On-site */
-  { id: 10, src: '/images/company_images/C11.png', label: 'Field Calibration',           cat: 'On-site',         wide: true  },
-  { id: 11, src: '/images/company_images/C12.png', label: 'On-site Measurement',         cat: 'On-site'                      },
-  { id: 12, src: '/images/company_images/C13.png', label: 'Client Site Testing',         cat: 'On-site'                      },
+  { id: 10, src: '/images/company_images/C11.png', label: 'Field Calibration',           cat: 'On-site' },
+  { id: 11, src: '/images/company_images/C12.png', label: 'On-site Measurement',         cat: 'On-site' },
+  { id: 12, src: '/images/company_images/C13.png', label: 'Client Site Testing',         cat: 'On-site' },
 ];
 
 const CATS = ['All', 'Calibration Lab', 'Instruments', 'Equipment', 'On-site'];

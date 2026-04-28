@@ -71,18 +71,14 @@ function HomeContactForm() {
     );
 }
 
-/* ── Gallery preview images (10 best shots) ── */
+/* ── Gallery preview images (6 best shots — uniform grid) ── */
 const GALLERY_PREVIEW = [
-    { id: 1, src: '/images/company_images/C1.png', label: 'Temperature Calibration Lab', wide: true },
-    { id: 2, src: '/images/company_images/C2.png', label: 'Electrical Standards Bench', wide: false },
-    { id: 3, src: '/images/company_images/C4.png', label: 'Weight Standards – Reference Set', wide: false },
-    { id: 4, src: '/images/company_images/C5.png', label: 'Dimensional Measuring Tools', wide: false },
-    { id: 5, src: '/images/company_images/C7.png', label: 'Equipment Overview', wide: true },
-    { id: 6, src: '/images/company_images/C8.png', label: 'Calibration Bench', wide: false },
-    { id: 7, src: '/images/company_images/C9.png', label: 'Thermal Calibration Unit', wide: false },
-    { id: 8, src: '/images/company_images/C11.png', label: 'Field Calibration – On-site', wide: false },
-    { id: 9, src: '/images/company_images/C6.png', label: 'Reference Standards', wide: false },
-    { id: 10, src: '/images/company_images/C12.png', label: 'On-site Measurement', wide: false },
+    { id: 1, src: '/images/company_images/C1.png', label: 'Temperature Calibration Lab' },
+    { id: 2, src: '/images/company_images/C2.png', label: 'Electrical Standards Bench' },
+    { id: 3, src: '/images/company_images/C4.png', label: 'Weight Standards – Reference Set' },
+    { id: 4, src: '/images/company_images/C5.png', label: 'Dimensional Measuring Tools' },
+    { id: 5, src: '/images/company_images/C7.png', label: 'Equipment Overview' },
+    { id: 6, src: '/images/company_images/C8.png', label: 'Calibration Bench' },
 ];
 
 const INSTRUMENTS = [
@@ -550,6 +546,7 @@ const Home = () => {
                         <div className="section-header center">
                             <div className="section-tag">Our Expertise</div>
                             <h2 className="section-title">Instruments We <span>Calibrate</span></h2>
+                            <div className="section-title-underline" />
                             <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
                                 Asian Enterprises calibrates precision instruments across all major disciplines,
                                 traceable to national &amp; international standards.
@@ -585,8 +582,8 @@ const Home = () => {
                 <div className="container">
                     <FadeInSection>
                         <div className="section-header center" style={{ marginBottom: '40px' }}>
-                            <div className="section-tag">Gallery</div>
                             <h2 className="section-title">Our <span>Work &amp; Facilities</span></h2>
+                            <div className="section-title-underline" />
                             <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
                                 A glimpse into Asian Enterprises' state-of-the-art laboratories, precision
                                 instruments, and on-site calibration operations.
@@ -595,10 +592,10 @@ const Home = () => {
                     </FadeInSection>
 
                     <div className="home-gallery-grid">
-                        {GALLERY_PREVIEW.map((img, i) => (
+                        {GALLERY_PREVIEW.slice(0, 6).map((img, i) => (
                             <motion.div
                                 key={img.id}
-                                className={`hg-item${img.wide ? ' hg-wide' : ''}`}
+                                className="hg-item"
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
