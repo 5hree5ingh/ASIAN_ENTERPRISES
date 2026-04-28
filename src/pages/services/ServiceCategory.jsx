@@ -117,7 +117,8 @@ const ServiceCategory = () => {
 
                     <motion.p className="svc-hero-desc"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
-                        {cat.description}
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </motion.p>
 
                     <motion.div className="svc-hero-actions"

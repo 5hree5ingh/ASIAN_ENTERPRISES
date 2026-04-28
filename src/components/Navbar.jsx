@@ -370,15 +370,7 @@ const Navbar = () => {
                     </li>
                 </ul>
 
-                {/* CTA */}
-                <a
-                    href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20I%20am%20interested%20in%20your%20calibration%20services."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="nav-cta"
-                >
-                    Get a Quote
-                </a>
+
 
                 {/* Hamburger */}
                 <button
@@ -493,14 +485,7 @@ const Navbar = () => {
                     <Link to="/contact" className={`mobile-link ${location.pathname === '/contact'  ? 'active' : ''}`}>Contact Us</Link>
                 )}
 
-                <a
-                    href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20I%20am%20interested%20in%20your%20calibration%20services."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mobile-cta"
-                >
-                    Get a Quote
-                </a>
+
             </div>
         </nav>
     );

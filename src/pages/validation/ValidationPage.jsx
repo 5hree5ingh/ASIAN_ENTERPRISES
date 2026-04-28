@@ -55,8 +55,8 @@ const ValidationPage = () => {
 
                     <motion.p className="val-hero-desc"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-                        End-to-end IQ, OQ & PQ validation for equipment, utilities, and automated systems.
-                        Comprehensive documentation packages accepted by FDA, EU GMP, and WHO auditors.
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </motion.p>
 
                     <motion.div className="val-hero-actions"

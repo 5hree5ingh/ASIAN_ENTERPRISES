@@ -48,8 +48,8 @@ const Partners = () => (
                     Trusted by India's <span>Leading Companies</span>
                 </h1>
                 <p className="section-subtitle" style={{ maxWidth: '680px' }}>
-                    From Fortune 500 companies to cutting-edge research labs, our calibration services
-                    are trusted by organizations that demand absolute precision.
+                    Asian Enterprises delivered world-class calibration &amp; validation services for
+                    precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                 </p>
             </div>
         </section>

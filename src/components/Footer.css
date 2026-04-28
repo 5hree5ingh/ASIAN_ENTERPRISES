@@ -33,6 +33,19 @@
 
 .footer-logo:hover .footer-logo-img { opacity: 0.85; }
 
+.footer-brand-name {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #ffffff 0%, #90caf9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .footer-brand-desc {
     font-size: 0.88rem;
     color: rgba(179,210,240,0.75);

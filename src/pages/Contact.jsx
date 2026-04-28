@@ -64,8 +64,8 @@ const Contact = () => {
                         Let's Discuss Your <span>Calibration Needs</span>
                     </h1>
                     <p className="section-subtitle" style={{ maxWidth: '640px' }}>
-                        Our team of experts is ready to tailor the perfect calibration and maintenance solution for your organization.
-                        Reach out today for a free consultation.
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </p>
                 </div>
             </section>

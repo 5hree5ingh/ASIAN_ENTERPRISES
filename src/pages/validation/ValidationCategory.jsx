@@ -117,7 +117,8 @@ const ValidationCategory = () => {
 
                     <motion.p className="vcat-hero-desc"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
-                        {group.description}
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </motion.p>
 
                     <motion.div className="vcat-hero-actions"

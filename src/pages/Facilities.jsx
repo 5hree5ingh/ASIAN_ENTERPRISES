@@ -198,9 +198,8 @@ const Facilities = ({ embedded = false }) => (
                         Calibration &amp; <span>Validation</span> Facilities
                     </h1>
                     <p className="section-subtitle" style={{ maxWidth: '680px' }}>
-                        Asian Enterprises offers a comprehensive suite of NABL-accredited calibration
-                        and validation services — ensuring your instruments and processes meet the
-                        highest standards of accuracy and compliance.
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </p>
                 </div>
             </section>

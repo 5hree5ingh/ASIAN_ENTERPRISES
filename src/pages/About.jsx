@@ -1,9 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+    Building2,
+    Award,
+    ShieldCheck,
+    Landmark,
+    MapPin,
+    MonitorSmartphone,
+} from 'lucide-react';
 import './About.css';
 
 const team = [
-    { name: 'Mrs. Mamta', role: 'Founder', exp: '12+ yrs', initials: 'MM', photo: null },
+    { name: 'Mrs. Mamta', role: 'Founder', exp: '12+ yrs', initials: 'MM', photo: '/images/MAMTA.png' },
     { name: 'Mr. Satish Kumar Mishra', role: 'Chief Executive Officer', exp: '12+ yrs', initials: 'SK', photo: '/images/SATISH.png' },
 ];
 
@@ -12,41 +20,111 @@ const milestones = [
         year: '2013',
         title: 'Foundation',
         desc: 'Asian Enterprises was established with a bold mission — to deliver world-class precision calibration and measurement services to Indian industries.',
-        icon: '🏗️',
+        Icon: Building2,
     },
     {
         year: '2014',
         title: 'NABL Accreditation',
         desc: 'Achieved prestigious NABL accreditation — certifying our compliance with ISO/IEC 17025 and placing us among India\'s top-tier calibration labs.',
-        icon: '🏆',
+        Icon: Award,
     },
     {
         year: '2014',
         title: 'ISO 9001 Certified',
         desc: 'Awarded ISO 9001 certification for our robust Quality Management System, reinforcing standardised processes and commitment to quality.',
-        icon: '✅',
+        Icon: ShieldCheck,
     },
     {
         year: '2014',
         title: 'MSME Authorised',
         desc: 'Officially registered as an MSME by the Government of India — strengthening credibility and partnerships with government bodies and large industries.',
-        icon: '🏛️',
+        Icon: Landmark,
     },
     {
         year: 'Growth',
         title: 'National Expansion',
         desc: 'Established service centres in Haridwar and Chandigarh, delivering on-site and in-lab calibration across Northern India\'s industrial corridors.',
-        icon: '📍',
+        Icon: MapPin,
     },
     {
         year: '2025',
         title: 'Going Digital — SaaS Platform',
-        desc: 'Implementing SaaS-based certificate generation software for instant, tamper-proof digital calibration certificates — faster, seamless, and fully paperless. 🚀',
-        icon: '💻',
+        desc: 'Implementing SaaS-based certificate generation software for instant, tamper-proof digital calibration certificates — faster, seamless, and fully paperless.',
+        Icon: MonitorSmartphone,
     },
 ];
 
-const About = () => (
+const About = () => {
+    const timelineRef = React.useRef(null);
+    const fillRef = React.useRef(null);
+
+    React.useEffect(() => {
+        /* ── Reveal cards on scroll ── */
+        const items = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px 0px 0px' }
+        );
+        items.forEach((item) => observer.observe(item));
+
+        /* ── Fallback: force-show items already in viewport on load ── */
+        const fallback = setTimeout(() => {
+            items.forEach((item) => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    item.classList.add('visible');
+                }
+            });
+        }, 100);
+
+        /* ── Fill line on scroll ── */
+        const handleScroll = () => {
+            const timeline = timelineRef.current;
+            const fill = fillRef.current;
+            if (!timeline || !fill) return;
+
+            const rect = timeline.getBoundingClientRect();
+            const timelineTop = rect.top + window.scrollY;
+            const timelineHeight = rect.height;
+            const scrollY = window.scrollY + window.innerHeight * 0.55;
+
+            const progress = Math.min(
+                Math.max((scrollY - timelineTop) / timelineHeight, 0),
+                1
+            );
+            fill.style.height = `${progress * 100}%`;
+
+            /* Light up dots the fill has passed */
+            const dots = timeline.querySelectorAll('.timeline-dot');
+            dots.forEach((dot) => {
+                const dotRect = dot.getBoundingClientRect();
+                const dotCenter = dotRect.top + dotRect.height / 2;
+                const fillBottom = rect.top + timelineHeight * progress;
+                if (dotCenter <= fillBottom) {
+                    dot.classList.add('reached');
+                } else {
+                    dot.classList.remove('reached');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // initial check
+
+        return () => {
+            clearTimeout(fallback);
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
     <div className="about page-enter">
         {/* ─── PAGE HERO with background image ─── */}
         <section className="about-hero">
@@ -54,15 +132,13 @@ const About = () => (
             <div className="about-hero-overlay" />
             <div className="container about-hero-inner">
                 <div className="about-hero-content">
-                    <div className="section-tag">About Asian Enterprises</div>
                     <h1 className="about-hero-title">
                         12+ Years of Measurement<br />
                         <span className="about-hero-accent">Excellence</span>
                     </h1>
                     <p className="about-hero-subtitle">
-                        We are a premier calibration, maintenance, and repair service provider
-                        dedicated to ensuring the accuracy and reliability of precision measuring
-                        instruments used across industries throughout India.
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </p>
                     <div className="about-hero-stats">
                         <div className="ahs-item">
@@ -84,60 +160,21 @@ const About = () => (
             </div>
         </section>
 
-        {/* ─── MISSION & VISION with image ─── */}
-        <section className="mv-section">
-            <div className="container mv-grid">
-                <div className="mv-image-wrap">
-                    <img src="/images/about_mission.png" alt="Precision Calibration" className="mv-image" />
-                    <div className="mv-image-badge">
-                        <span className="mv-badge-number">25+</span>
-                        <span className="mv-badge-text">Years Combined<br />Experience</span>
-                    </div>
-                </div>
-                <div className="mv-content">
-                    <div className="section-tag" style={{ background: 'rgba(13, 71, 161, 0.1)', color: '#0d47a1', borderColor: 'rgba(13, 71, 161, 0.2)' }}>Our Mission</div>
-                    <h2 className="mv-title">
-                        Delivering <span>Precision</span> You Can Trust
-                    </h2>
-                    <p className="mv-desc">
-                        Our mission is to provide world-class calibration services that guarantee
-                        accuracy, reliability, and traceability — helping industries maintain the
-                        highest quality standards in their manufacturing and quality control processes.
-                    </p>
-                    <div className="mv-features">
-                        {[
-                            'ISO/IEC 17025 Accredited Laboratory',
-                            'NABL-Compliant Procedures',
-                            'NPL Traceable Standards',
-                            'Fast Turnaround Time',
-                        ].map((feat, i) => (
-                            <div key={i} className="mv-feature">
-                                <div className="mv-feature-icon">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                                        <path d="M20 6L9 17l-5-5" />
-                                    </svg>
-                                </div>
-                                <span>{feat}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-
         {/* ─── TIMELINE ─── */}
         <section className="section timeline-section">
             <div className="container">
                 <div className="section-header center" style={{ marginBottom: '60px' }}>
-                    <div className="section-tag">Our Journey</div>
                     <h2 className="section-title">Milestones That <span>Define Us</span></h2>
                 </div>
-                <div className="timeline">
+                <div className="timeline" ref={timelineRef}>
                     <div className="timeline-line" />
+                    <div className="timeline-line-fill" ref={fillRef} />
                     {milestones.map((m, i) => (
                         <div key={i} className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}>
                             <div className="timeline-dot">
-                                <span className="timeline-dot-icon">{m.icon}</span>
+                                <span className="timeline-dot-inner">
+                                    <m.Icon size={18} strokeWidth={2} />
+                                </span>
                             </div>
                             <div className="timeline-card">
                                 <div className="tl-year">{m.year}</div>
@@ -247,6 +284,7 @@ const About = () => (
             </div>
         </section>
     </div>
-);
+    );
+};
 
 export default About;

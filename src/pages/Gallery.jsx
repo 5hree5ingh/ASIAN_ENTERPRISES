@@ -84,8 +84,8 @@ const Gallery = () => {
             A Glimpse of Our <span>Work &amp; Facilities</span>
           </h1>
           <p className="section-subtitle" style={{ maxWidth: '640px' }}>
-            Explore our state-of-the-art laboratories, precision calibration instruments, and
-            the expert team behind every accurate measurement.
+            Asian Enterprises delivered world-class calibration &amp; validation services for
+            precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
           </p>
         </div>
       </section>

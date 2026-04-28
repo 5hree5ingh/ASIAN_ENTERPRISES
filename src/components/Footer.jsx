@@ -15,6 +15,7 @@ const Footer = () => (
                             className="footer-logo-img"
                         />
                     </Link>
+                    <div className="footer-brand-name">Asian Enterprises</div>
                     <p className="footer-brand-desc">
                         India's trusted calibration, maintenance, and repair service provider for precision
                         measuring instruments. Accuracy you can rely on — every single time.

@@ -51,9 +51,8 @@ const Validation = () => (
                 </motion.h1>
                 <motion.p className="val-hero-desc"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-                    Asian Enterprises delivers comprehensive IQ, OQ, and PQ validation services
-                    for equipment, utilities, and automated systems — compliant with FDA, EU GMP,
-                    WHO, and ISO regulations.
+                    Asian Enterprises delivered world-class calibration &amp; validation services for
+                    precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                 </motion.p>
                 <motion.div className="val-hero-actions"
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>

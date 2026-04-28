@@ -78,8 +78,8 @@ const Projects = () => {
                         Projects That Define <span>Our Excellence</span>
                     </h1>
                     <p className="section-subtitle" style={{ maxWidth: '680px' }}>
-                        From automotive giants to aerospace laboratories, our calibration expertise has powered
-                        quality control operations across India's most demanding industries.
+                        Asian Enterprises delivered world-class calibration &amp; validation services for
+                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
                     </p>
                 </div>
             </section>

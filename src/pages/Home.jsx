@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import Testimonials from '../components/Testimonials';
 import './Home.css';
@@ -9,79 +9,79 @@ import './Contact.css';
 
 /* ── Inline contact form for Home page ── */
 function HomeContactForm() {
-  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-  const handleSubmit = e => { e.preventDefault(); setSubmitted(true); };
-  if (submitted) {
+    const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+    const [submitted, setSubmitted] = useState(false);
+    const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+    const handleSubmit = e => { e.preventDefault(); setSubmitted(true); };
+    if (submitted) {
+        return (
+            <div className="contact-form-box glass-card">
+                <div className="form-success">
+                    <div className="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                    </div>
+                    <h3>Enquiry Received!</h3>
+                    <p>Thank you for reaching out. Our team will contact you within 24 business hours.</p>
+                    <button className="btn-outline" onClick={() => setSubmitted(false)}>Send Another Enquiry</button>
+                </div>
+            </div>
+        );
+    }
     return (
-      <div className="contact-form-box glass-card">
-        <div className="form-success">
-          <div className="success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-          </div>
-          <h3>Enquiry Received!</h3>
-          <p>Thank you for reaching out. Our team will contact you within 24 business hours.</p>
-          <button className="btn-outline" onClick={() => setSubmitted(false)}>Send Another Enquiry</button>
+        <div className="contact-form-box glass-card">
+            <h3 className="form-title">Request a Quote</h3>
+            <p className="form-sub">Fill the form and our team will get back to you shortly.</p>
+            <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                    <div className="form-group"><label>Your Name *</label><input type="text" name="name" required placeholder="John Doe" value={form.name} onChange={handleChange} /></div>
+                    <div className="form-group"><label>Company Name</label><input type="text" name="company" placeholder="ACME Corp." value={form.company} onChange={handleChange} /></div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group"><label>Email Address *</label><input type="email" name="email" required placeholder="john@company.com" value={form.email} onChange={handleChange} /></div>
+                    <div className="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} /></div>
+                </div>
+                <div className="form-group">
+                    <label>Service Required *</label>
+                    <select name="service" required value={form.service} onChange={handleChange}>
+                        <option value="">Select a service...</option>
+                        <option>Dimensional Calibration</option>
+                        <option>Pressure Calibration</option>
+                        <option>Temperature Calibration</option>
+                        <option>Torque Calibration</option>
+                        <option>Electrical Calibration</option>
+                        <option>Mass & Volume Calibration</option>
+                        <option>On-site Calibration</option>
+                        <option>Annual Maintenance Contract</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Message / Details</label>
+                    <textarea name="message" rows="4" placeholder="Describe your requirement, number of instruments, timeline, etc." value={form.message} onChange={handleChange} />
+                </div>
+                <button type="submit" className="btn-primary form-submit">
+                    <span>Send Enquiry</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+                </button>
+            </form>
         </div>
-      </div>
     );
-  }
-  return (
-    <div className="contact-form-box glass-card">
-      <h3 className="form-title">Request a Quote</h3>
-      <p className="form-sub">Fill the form and our team will get back to you shortly.</p>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-group"><label>Your Name *</label><input type="text" name="name" required placeholder="John Doe" value={form.name} onChange={handleChange} /></div>
-          <div className="form-group"><label>Company Name</label><input type="text" name="company" placeholder="ACME Corp." value={form.company} onChange={handleChange} /></div>
-        </div>
-        <div className="form-row">
-          <div className="form-group"><label>Email Address *</label><input type="email" name="email" required placeholder="john@company.com" value={form.email} onChange={handleChange} /></div>
-          <div className="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} /></div>
-        </div>
-        <div className="form-group">
-          <label>Service Required *</label>
-          <select name="service" required value={form.service} onChange={handleChange}>
-            <option value="">Select a service...</option>
-            <option>Dimensional Calibration</option>
-            <option>Pressure Calibration</option>
-            <option>Temperature Calibration</option>
-            <option>Torque Calibration</option>
-            <option>Electrical Calibration</option>
-            <option>Mass & Volume Calibration</option>
-            <option>On-site Calibration</option>
-            <option>Annual Maintenance Contract</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Message / Details</label>
-          <textarea name="message" rows="4" placeholder="Describe your requirement, number of instruments, timeline, etc." value={form.message} onChange={handleChange} />
-        </div>
-        <button type="submit" className="btn-primary form-submit">
-          <span>Send Enquiry</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
-        </button>
-      </form>
-    </div>
-  );
 }
 
 /* ── Gallery preview images (10 best shots) ── */
 const GALLERY_PREVIEW = [
-  { id: 1, src: '/images/company_images/C1.png',  label: 'Temperature Calibration Lab',       wide: true  },
-  { id: 2, src: '/images/company_images/C2.png',  label: 'Electrical Standards Bench',        wide: false },
-  { id: 3, src: '/images/company_images/C4.png',  label: 'Weight Standards – Reference Set',  wide: false },
-  { id: 4, src: '/images/company_images/C5.png',  label: 'Dimensional Measuring Tools',       wide: false },
-  { id: 5, src: '/images/company_images/C7.png',  label: 'Equipment Overview',                wide: true  },
-  { id: 6, src: '/images/company_images/C8.png',  label: 'Calibration Bench',                 wide: false },
-  { id: 7, src: '/images/company_images/C9.png',  label: 'Thermal Calibration Unit',          wide: false },
-  { id: 8, src: '/images/company_images/C11.png', label: 'Field Calibration – On-site',       wide: false },
-  { id: 9, src: '/images/company_images/C6.png',  label: 'Reference Standards',               wide: false },
-  { id: 10, src: '/images/company_images/C12.png', label: 'On-site Measurement',               wide: false },
+    { id: 1, src: '/images/company_images/C1.png', label: 'Temperature Calibration Lab', wide: true },
+    { id: 2, src: '/images/company_images/C2.png', label: 'Electrical Standards Bench', wide: false },
+    { id: 3, src: '/images/company_images/C4.png', label: 'Weight Standards – Reference Set', wide: false },
+    { id: 4, src: '/images/company_images/C5.png', label: 'Dimensional Measuring Tools', wide: false },
+    { id: 5, src: '/images/company_images/C7.png', label: 'Equipment Overview', wide: true },
+    { id: 6, src: '/images/company_images/C8.png', label: 'Calibration Bench', wide: false },
+    { id: 7, src: '/images/company_images/C9.png', label: 'Thermal Calibration Unit', wide: false },
+    { id: 8, src: '/images/company_images/C11.png', label: 'Field Calibration – On-site', wide: false },
+    { id: 9, src: '/images/company_images/C6.png', label: 'Reference Standards', wide: false },
+    { id: 10, src: '/images/company_images/C12.png', label: 'On-site Measurement', wide: false },
 ];
 
 /* ── Animated counter hook ── */
@@ -148,7 +148,7 @@ const services = [
     {
         icon: (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                <circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
             </svg>
         ),
         slug: 'dimensional',
@@ -160,7 +160,7 @@ const services = [
     {
         icon: (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/>
+                <path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z" />
             </svg>
         ),
         slug: 'thermal',
@@ -172,7 +172,7 @@ const services = [
     {
         icon: (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
         ),
         slug: 'electrical',
@@ -184,7 +184,7 @@ const services = [
     {
         icon: (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
             </svg>
         ),
         slug: 'mechanical',
@@ -196,6 +196,7 @@ const services = [
 ];
 
 const Home = () => {
+    const navigate = useNavigate();
     const [selected, setSelected] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -249,64 +250,68 @@ const Home = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                    <h1 className="hero-title">
-                        Precision<br />
-                        Calibration<br />
-                        <span className="hero-title-accent">Services</span>
-                    </h1>
-                    <p className="hero-subtitle">
-                        Delivering world-class calibration &amp; validation services for
-                        precision measuring instruments — ensuring your instruments meet
-                        the highest accuracy standards.
-                    </p>
-
-                    <div className="hero-actions">
-                        <motion.a
-                            href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20I%20am%20interested%20in%20your%20calibration%20services."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hero-btn-primary"
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                        >
-                            Get a Free Quote
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </motion.a>
-                        <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                            <Link to="/about" className="hero-btn-outline">Learn More</Link>
-                        </motion.div>
+                    {/* Top group — title */}
+                    <div className="hero-top">
+                        <h1 className="hero-title">
+                            <span className="hero-brand-tag">Asian Enterprises</span>
+                            Asian<br />
+                            Calibration<br />
+                            <span className="hero-title-accent">Services</span>
+                        </h1>
                     </div>
 
-                    <div className="hero-stats">
-                        <div className="hero-stat">
-                            <span className="hero-stat-number">
-                                <CountUp end={25} suffix="+" duration={2000} />
-                            </span>
-                            <span className="hero-stat-label">Years Experience</span>
+                    {/* Bottom group — subtitle, buttons, stats */}
+                    <div className="hero-bottom">
+                        <p className="hero-subtitle">
+                            Asian Enterprises delivered world-class calibration &amp; validation services for
+                            precision measuring instruments — ensuring your instruments meet
+                            the highest accuracy standards.
+                        </p>
+
+                        <div className="hero-actions">
+                            <motion.a
+                                href="https://wa.me/919760188223?text=Hello%20Asian%20Enterprises!%20I%20am%20interested%20in%20your%20calibration%20services."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hero-btn-primary"
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                            >
+                                Get a Free Quote
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </motion.a>
+                            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                                <Link to="/about" className="hero-btn-outline">Learn More</Link>
+                            </motion.div>
                         </div>
-                        <div className="hero-stat-divider" />
-                        <div className="hero-stat">
-                            <span className="hero-stat-number">
-                                <CountUp end={750} suffix="+" duration={2000} delay={200} />
-                            </span>
-                            <span className="hero-stat-label">Satisfied Clients</span>
-                        </div>
-                        <div className="hero-stat-divider" />
-                        <div className="hero-stat">
-                            <span className="hero-stat-number">
-                                <CountUp end={5000} suffix="+" duration={2500} delay={400} />
-                            </span>
-                            <span className="hero-stat-label">Calibrations / Year</span>
+
+                        <div className="hero-stats">
+                            <div className="hero-stat">
+                                <span className="hero-stat-number">
+                                    <CountUp end={25} suffix="+" duration={2000} />
+                                </span>
+                                <span className="hero-stat-label">Years Experience</span>
+                            </div>
+                            <div className="hero-stat-divider" />
+                            <div className="hero-stat">
+                                <span className="hero-stat-number">
+                                    <CountUp end={750} suffix="+" duration={2000} delay={200} />
+                                </span>
+                                <span className="hero-stat-label">Satisfied Clients</span>
+                            </div>
+                            <div className="hero-stat-divider" />
+                            <div className="hero-stat">
+                                <span className="hero-stat-number">
+                                    <CountUp end={5000} suffix="+" duration={2500} delay={400} />
+                                </span>
+                                <span className="hero-stat-label">Calibrations / Year</span>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
 
-                <div className="hero-scroll-indicator">
-                    <div className="scroll-line" />
-                    <span className="scroll-text">Scroll</span>
-                </div>
             </section>
 
             {/* ─── ABOUT SECTION ─── */}
@@ -330,7 +335,6 @@ const Home = () => {
                     </FadeInSection>
                     <FadeInSection delay={0.15}>
                         <div className="am-content-col">
-                            <div className="am-tag">Why Asian Enterprises</div>
                             <h2 className="am-title">Built on <span>Precision</span> &<br />Trust</h2>
                             <p className="am-subtitle">
                                 With over 25 years of expertise, we are the preferred calibration partner for
@@ -376,12 +380,8 @@ const Home = () => {
                 <div className="container">
                     <FadeInSection>
                         <div className="section-header center">
-                            <div className="section-tag">What We Do</div>
                             <h2 className="section-title">Our Calibration <span>Services</span></h2>
-                            <p className="section-subtitle">
-                                NABL-accredited calibration across all major disciplines —
-                                traceable to national and international standards.
-                            </p>
+                            <div className="section-title-underline" />
                         </div>
                     </FadeInSection>
 
@@ -392,6 +392,8 @@ const Home = () => {
                                     className="service-card"
                                     whileHover={{ y: -8 }}
                                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                    onClick={() => navigate(`/services/${svc.slug}`)}
+                                    style={{ cursor: 'pointer' }}
                                 >
                                     <div style={{ overflow: 'hidden' }}>
                                         <img
@@ -436,8 +438,8 @@ const Home = () => {
                             <div className="section-tag">Validation &amp; Qualification</div>
                             <h2 className="section-title">Our Validation <span>Services</span></h2>
                             <p className="section-subtitle">
-                                IQ, OQ &amp; PQ validation for equipment, utilities, and automated systems —
-                                compliant with FDA, EU GMP, and WHO regulations.
+                                Asian Enterprises delivers IQ, OQ &amp; PQ validation for equipment, utilities,
+                                and automated systems — compliant with FDA, EU GMP, and WHO regulations.
                             </p>
                         </div>
                     </FadeInSection>
@@ -447,7 +449,7 @@ const Home = () => {
                             {
                                 icon: (
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                                        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+                                        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
                                     </svg>
                                 ),
                                 slug: 'equipment',
@@ -460,7 +462,7 @@ const Home = () => {
                             {
                                 icon: (
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                                        <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/>
+                                        <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2" />
                                     </svg>
                                 ),
                                 slug: 'utility',
@@ -473,7 +475,7 @@ const Home = () => {
                             {
                                 icon: (
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
-                                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                                        <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
                                     </svg>
                                 ),
                                 slug: 'process',
@@ -489,6 +491,8 @@ const Home = () => {
                                     className="service-card service-card--flex"
                                     whileHover={{ y: -8 }}
                                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                    onClick={() => navigate(svc.path)}
+                                    style={{ cursor: 'pointer' }}
                                 >
                                     <div style={{ overflow: 'hidden' }}>
                                         <img src={svc.img} alt={svc.title} className="service-card-img" />
@@ -530,6 +534,10 @@ const Home = () => {
                         <div className="section-header center">
                             <div className="section-tag">Our Expertise</div>
                             <h2 className="section-title">Instruments We <span>Calibrate</span></h2>
+                            <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
+                                Asian Enterprises calibrates precision instruments across all major disciplines,
+                                traceable to national &amp; international standards.
+                            </p>
                         </div>
                     </FadeInSection>
                     <div className="instruments-grid">
@@ -565,8 +573,8 @@ const Home = () => {
                             <div className="section-tag">Gallery</div>
                             <h2 className="section-title">Our <span>Work &amp; Facilities</span></h2>
                             <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
-                                A glimpse into our state-of-the-art laboratories, precision instruments,
-                                and on-site calibration operations.
+                                A glimpse into Asian Enterprises' state-of-the-art laboratories, precision
+                                instruments, and on-site calibration operations.
                             </p>
                         </div>
                     </FadeInSection>
@@ -605,32 +613,19 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* ─── TRUSTED PARTNERS — TESTIMONIALS ─── */}
+            {/* ─── CLIENT TESTIMONIALS ─── */}
             <section id="partners" className="section" style={{ background: '#ffffff' }}>
                 <div className="container">
                     <FadeInSection>
                         <div className="section-header center">
-                            <div className="section-tag">Trusted Partners</div>
-                            <h2 className="section-title">What Our <span>Clients Say</span></h2>
+                            <h2 className="section-title">What Our <span>Clients</span> <span>Say</span></h2>
                             <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
-                                Leading companies across automotive, aerospace, pharma, and engineering
-                                trust Asian Enterprises for precision calibration.
+                                Leading companies across automotive, aerospace, pharma, and
+                                engineering trust Asian Enterprises for precision calibration.
                             </p>
                         </div>
                     </FadeInSection>
-                    <FadeInSection delay={0.15}>
-                        <Testimonials />
-                    </FadeInSection>
-                    <FadeInSection delay={0.25}>
-                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                            <Link to="/partners" className="btn-primary" style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }}>
-                                <span>View All Partners</span>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </Link>
-                        </div>
-                    </FadeInSection>
+                    <Testimonials />
                 </div>
             </section>
 
@@ -642,7 +637,7 @@ const Home = () => {
                             <div className="section-tag">Get In Touch</div>
                             <h2 className="section-title">Let's Discuss Your <span>Calibration Needs</span></h2>
                             <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
-                                Reach out for a free consultation. Our team responds within 24 business hours.
+                                Reach out to <strong>Asian Enterprises</strong> for a free consultation. Our team responds within 24 business hours.
                             </p>
                         </div>
                     </FadeInSection>
@@ -704,7 +699,7 @@ const Home = () => {
                     <FadeInSection>
                         <div className="cta-text">
                             <h2 className="cta-title">Ready to Ensure Your Instruments Are Accurate?</h2>
-                            <p className="cta-sub">Contact us today for a free consultation and quote on calibration services.</p>
+                            <p className="cta-sub">Contact <strong>Asian Enterprises</strong> today for a free consultation and quote on expert calibration &amp; validation services.</p>
                         </div>
                     </FadeInSection>
                     <div className="cta-actions">
