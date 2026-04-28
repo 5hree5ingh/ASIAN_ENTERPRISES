@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
+import { ArrowUpDown, Circle, Gauge, Maximize2, Ruler, Scale, Search, Settings, Thermometer, Wrench } from 'lucide-react';
 import Testimonials from '../components/Testimonials';
 import './Home.css';
 import './Gallery.css';
@@ -82,6 +83,21 @@ const GALLERY_PREVIEW = [
     { id: 8, src: '/images/company_images/C11.png', label: 'Field Calibration – On-site', wide: false },
     { id: 9, src: '/images/company_images/C6.png', label: 'Reference Standards', wide: false },
     { id: 10, src: '/images/company_images/C12.png', label: 'On-site Measurement', wide: false },
+];
+
+const INSTRUMENTS = [
+    { name: 'Vernier Calipers', category: 'Dimensional', Icon: Ruler },
+    { name: 'Micrometers', category: 'Dimensional', Icon: Maximize2 },
+    { name: 'Dial Gauges', category: 'Dimensional', Icon: Circle },
+    { name: 'Depth Gauges', category: 'Dimensional', Icon: ArrowUpDown },
+    { name: 'Height Gauges', category: 'Dimensional', Icon: ArrowUpDown },
+    { name: 'Bore Gauges', category: 'Dimensional', Icon: Search },
+    { name: 'Thread Gauges', category: 'Dimensional', Icon: Ruler },
+    { name: 'Angle Gauges', category: 'Dimensional', Icon: Settings },
+    { name: 'Torque Wrenches', category: 'Mechanical', Icon: Wrench },
+    { name: 'Pressure Gauges', category: 'Mechanical', Icon: Gauge },
+    { name: 'Temperature Instruments', category: 'Thermal', Icon: Thermometer },
+    { name: 'Force Gauges', category: 'Mechanical', Icon: Scale },
 ];
 
 /* ── Animated counter hook ── */
@@ -435,7 +451,6 @@ const Home = () => {
                 <div className="container">
                     <FadeInSection>
                         <div className="section-header center">
-                            <div className="section-tag">Validation &amp; Qualification</div>
                             <h2 className="section-title">Our Validation <span>Services</span></h2>
                             <div className="section-title-underline" />
                             <p className="section-subtitle">
@@ -542,24 +557,23 @@ const Home = () => {
                         </div>
                     </FadeInSection>
                     <div className="instruments-grid">
-                        {[
-                            'Vernier Calipers', 'Micrometers', 'Dial Gauges', 'Depth Gauges',
-                            'Height Gauges', 'Bore Gauges', 'Thread Gauges', 'Angle Gauges',
-                            'Torque Wrenches', 'Pressure Gauges', 'Temperature Instruments', 'Force Gauges',
-                        ].map((inst, i) => (
+                        {INSTRUMENTS.map(({ name, category, Icon }, i) => (
                             <motion.div
                                 key={i}
                                 className="instrument-tag"
-                                initial={{ opacity: 0, scale: 0.85 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.05, duration: 0.35 }}
-                                whileHover={{ y: -3 }}
+                                whileHover={{ y: -5 }}
                             >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                                </svg>
-                                {inst}
+                                <span className="instrument-icon">
+                                    <Icon size={20} strokeWidth={2.1} />
+                                </span>
+                                <span className="instrument-copy">
+                                    <span className="instrument-name">{name}</span>
+                                    <span className="instrument-category">{category}</span>
+                                </span>
                             </motion.div>
                         ))}
                     </div>

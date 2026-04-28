@@ -684,43 +684,93 @@
 
 /* ─── INSTRUMENTS SECTION ────────────────────────── */
 .instruments-section {
-    background: #ffffff;
+    background:
+        radial-gradient(circle at top left, rgba(33, 150, 243, 0.12), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
     padding: 100px 0;
 }
 
 .instruments-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 50px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 42px auto 0;
+    max-width: 980px;
 }
 
 .instrument-tag {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    background: var(--blue-50);
+    justify-content: flex-start;
+    gap: 13px;
+    min-height: 92px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.86);
     border: 1px solid rgba(33, 150, 243, 0.18);
-    border-radius: 50px;
-    padding: 10px 22px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--text-body);
-    transition: all 0.3s;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 14px 34px rgba(13, 71, 161, 0.08);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     cursor: default;
 }
 
-.instrument-tag svg {
-    color: var(--blue-400);
+.instrument-tag::after {
+    content: '';
+    position: absolute;
+    inset: auto -26px -42px auto;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgba(33, 150, 243, 0.08);
+}
+
+.instrument-icon {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--blue-700);
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    border: 1px solid rgba(33, 150, 243, 0.18);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.instrument-icon svg {
+    flex-shrink: 0;
+}
+
+.instrument-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.instrument-name {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.instrument-category {
+    color: var(--blue-700);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
 }
 
 .instrument-tag:hover {
     border-color: var(--blue-500);
-    background: var(--blue-100);
-    color: var(--blue-800);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    background: #fff;
+    box-shadow: 0 18px 42px rgba(13, 71, 161, 0.14);
 }
 
 /* ─── CTA BANNER ─────────────────────────────────── */
@@ -889,6 +939,10 @@
     .services-grid--3col {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .instruments-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 /* ── Small tablets / large phones (≤ 900px) ── */
@@ -979,6 +1033,12 @@
         max-width: 100%;
         gap: 12px;
         align-items: stretch;
+    }
+
+    .instruments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 32px;
     }
 
     /* Hide description on mobile — keep it compact */
@@ -1238,7 +1298,28 @@
 
     .instrument-tag {
         font-size: 0.78rem;
-        padding: 8px 14px;
+        min-height: 76px;
+        padding: 14px;
+        border-radius: 15px;
+        gap: 11px;
+    }
+
+    .instrument-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .instrument-name {
+        font-size: 0.86rem;
+    }
+
+    .instrument-category {
+        font-size: 0.6rem;
+    }
+
+    .instruments-grid {
+        grid-template-columns: 1fr;
     }
 
     .section-title {
