@@ -437,6 +437,7 @@ const Home = () => {
                         <div className="section-header center">
                             <div className="section-tag">Validation &amp; Qualification</div>
                             <h2 className="section-title">Our Validation <span>Services</span></h2>
+                            <div className="section-title-underline" />
                             <p className="section-subtitle">
                                 Asian Enterprises delivers IQ, OQ &amp; PQ validation for equipment, utilities,
                                 and automated systems — compliant with FDA, EU GMP, and WHO regulations.

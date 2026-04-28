@@ -1041,6 +1041,7 @@
         width: 100%;
         min-height: 34px;
         justify-content: center;
+        white-space: nowrap;
         font-size: 0.74rem;
         margin-top: auto;
         gap: 5px;
@@ -1054,6 +1055,7 @@
     .service-card-link svg {
         width: 13px;
         height: 13px;
+        flex-shrink: 0;
     }
 
     .service-card-link:hover {
@@ -1249,6 +1251,17 @@
 
     .services-section {
         padding: 50px 0;
+    }
+
+    .service-card-link {
+        font-size: 0.66rem;
+        gap: 4px;
+        padding: 8px 6px;
+    }
+
+    .service-card-link svg {
+        width: 12px;
+        height: 12px;
     }
 }
 
