@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const contactInfo = [
@@ -42,29 +43,22 @@ const contactInfo = [
 ];
 
 const Contact = () => {
-    const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' });
-    const [submitted, setSubmitted] = useState(false);
+    const formRef = useRef();
     const [submitting, setSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitting(true);
-        try {
-            const res = await fetch('https://formspree.io/f/myklrwrg', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form),
-            });
-            if (res.ok) {
+        emailjs.sendForm('service_ho07lpt', 'template_yvnafmm', formRef.current, 'pqjQ_TN4v6h5quLa4')
+            .then(() => {
                 setSubmitted(true);
-                setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' });
-            }
-        } catch (err) {
-            console.error('Form submission error:', err);
-        }
-        setSubmitting(false);
+                setSubmitting(false);
+            })
+            .catch((err) => {
+                console.error('EmailJS error:', err);
+                setSubmitting(false);
+            });
     };
 
     return (
@@ -120,32 +114,32 @@ const Contact = () => {
                     {!submitted ? (
                         <>
                             <h3 className="form-title-sm">Request a Quote</h3>
-                            <form className="contact-form" onSubmit={handleSubmit}>
+                            <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label>Your Name *</label>
-                                        <input type="text" name="name" required placeholder="John Doe" value={form.name} onChange={handleChange} />
+                                        <input type="text" name="name" required placeholder="John Doe" />
                                     </div>
                                     <div className="form-group">
                                         <label>Company Name</label>
-                                        <input type="text" name="company" placeholder="ACME Corp." value={form.company} onChange={handleChange} />
+                                        <input type="text" name="company" placeholder="ACME Corp." />
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label>Email Address *</label>
-                                        <input type="email" name="email" required placeholder="john@company.com" value={form.email} onChange={handleChange} />
+                                        <input type="email" name="email" required placeholder="john@company.com" />
                                     </div>
                                     <div className="form-group">
                                         <label>Phone Number</label>
-                                        <input type="tel" name="phone" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} />
+                                        <input type="tel" name="phone" placeholder="+91 98765 43210" />
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label>Service Required *</label>
-                                        <select name="service" required value={form.service} onChange={handleChange}>
-                                            <option value="">Select a service...</option>
+                                        <select name="service" required defaultValue="">
+                                            <option value="" disabled>Select a service...</option>
                                             <option>Dimensional Calibration</option>
                                             <option>Pressure Calibration</option>
                                             <option>Temperature Calibration</option>
@@ -158,7 +152,7 @@ const Contact = () => {
                                     </div>
                                     <div className="form-group">
                                         <label>Message</label>
-                                        <input type="text" name="message" placeholder="Brief details..." value={form.message} onChange={handleChange} />
+                                        <input type="text" name="message" placeholder="Brief details..." />
                                     </div>
                                 </div>
                                 <button type="submit" className="btn-primary form-submit-sm" disabled={submitting}>

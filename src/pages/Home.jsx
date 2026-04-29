@@ -8,12 +8,28 @@ import './Home.css';
 import './Gallery.css';
 import './Contact.css';
 
+import emailjs from '@emailjs/browser';
+
 /* ── Inline contact form for Home page ── */
 function HomeContactForm() {
-    const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+    const formRef = useRef();
+    const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-    const handleSubmit = e => { e.preventDefault(); setSubmitted(true); };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+        emailjs.sendForm('service_ho07lpt', 'template_yvnafmm', formRef.current, 'pqjQ_TN4v6h5quLa4')
+            .then(() => {
+                setSubmitted(true);
+                setSubmitting(false);
+            })
+            .catch((err) => {
+                console.error('EmailJS error:', err);
+                setSubmitting(false);
+            });
+    };
+
     if (submitted) {
         return (
             <div className="contact-form-box glass-card">
@@ -34,25 +50,37 @@ function HomeContactForm() {
         <div className="contact-form-box glass-card">
             <h3 className="form-title">Request a Quote</h3>
             <p className="form-sub">Fill the form and our team will get back to you shortly.</p>
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
                 <div className="form-row">
-                    <div className="form-group"><label>Your Name *</label><input type="text" name="name" required placeholder="John Doe" value={form.name} onChange={handleChange} /></div>
-                    <div className="form-group"><label>Company Name</label><input type="text" name="company" placeholder="ACME Corp." value={form.company} onChange={handleChange} /></div>
+                    <div className="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="name" required placeholder="John Doe" />
+                    </div>
+                    <div className="form-group">
+                        <label>Company Name</label>
+                        <input type="text" name="company" placeholder="ACME Corp." />
+                    </div>
                 </div>
                 <div className="form-row">
-                    <div className="form-group"><label>Email Address *</label><input type="email" name="email" required placeholder="john@company.com" value={form.email} onChange={handleChange} /></div>
-                    <div className="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} /></div>
+                    <div className="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="john@company.com" />
+                    </div>
+                    <div className="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" placeholder="+91 98765 43210" />
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Service Required *</label>
-                    <select name="service" required value={form.service} onChange={handleChange}>
-                        <option value="">Select a service...</option>
+                    <select name="service" required defaultValue="">
+                        <option value="" disabled>Select a service...</option>
                         <option>Dimensional Calibration</option>
                         <option>Pressure Calibration</option>
                         <option>Temperature Calibration</option>
                         <option>Torque Calibration</option>
                         <option>Electrical Calibration</option>
-                        <option>Mass & Volume Calibration</option>
+                        <option>Mass &amp; Volume Calibration</option>
                         <option>On-site Calibration</option>
                         <option>Annual Maintenance Contract</option>
                         <option>Other</option>
@@ -60,10 +88,10 @@ function HomeContactForm() {
                 </div>
                 <div className="form-group">
                     <label>Message / Details</label>
-                    <textarea name="message" rows="4" placeholder="Describe your requirement, number of instruments, timeline, etc." value={form.message} onChange={handleChange} />
+                    <textarea name="message" rows="4" placeholder="Describe your requirement, number of instruments, timeline, etc." />
                 </div>
-                <button type="submit" className="btn-primary form-submit">
-                    <span>Send Enquiry</span>
+                <button type="submit" className="btn-primary form-submit" disabled={submitting}>
+                    <span>{submitting ? 'Sending...' : 'Send Enquiry'}</span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
                 </button>
             </form>
