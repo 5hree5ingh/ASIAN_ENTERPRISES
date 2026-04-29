@@ -264,8 +264,13 @@ const Navbar = () => {
     const scrollTo = (id) => {
         const el = document.getElementById(id);
         if (el) {
-            const top = el.getBoundingClientRect().top + window.scrollY - 90;
-            window.scrollTo({ top, behavior: 'smooth' });
+            // Use Lenis for cinematic scroll, fallback to native
+            if (window.__lenis) {
+                window.__lenis.scrollTo(el, { offset: -90, duration: 1.6 });
+            } else {
+                const top = el.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
         }
     };
 

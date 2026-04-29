@@ -248,8 +248,12 @@ const Home = () => {
             setTimeout(() => {
                 const el = document.getElementById(id);
                 if (el) {
-                    const top = el.getBoundingClientRect().top + window.scrollY - 90;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    if (window.__lenis) {
+                        window.__lenis.scrollTo(el, { offset: -90, duration: 1.6 });
+                    } else {
+                        const top = el.getBoundingClientRect().top + window.scrollY - 90;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
                 }
             }, 100);
         }

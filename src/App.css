@@ -3,6 +3,17 @@
   box-sizing: border-box;
 }
 
+/* Push content below fixed navbar */
+main {
+  padding-top: 72px;
+}
+
+/* Home hero extends behind navbar */
+.home .hero {
+  margin-top: -72px;
+  padding-top: 72px;
+}
+
 /* ── Floating WhatsApp Button ── */
 .whatsapp-float {
   position: fixed;
