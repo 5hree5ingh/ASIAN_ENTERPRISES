@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  padding: 80px 0 60px;
+  padding: 10px 0 60px;
 }
 
 /* ── Fixed-height quote box ────────────────────── */
@@ -128,10 +128,10 @@
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  border: 2.5px solid rgba(33, 150, 243, 0.18);
-  box-shadow: 0 2px 8px rgba(13, 39, 87, 0.07);
+  border: none;
+  box-shadow: none;
   background: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 /* Active — blue ring via box-shadow on the img, scale via transform on pill */
@@ -139,11 +139,8 @@
   transform: scale(1.13);
 }
 .tu-pill--active .tu-avatar-img {
-  border-color: var(--blue-700);
-  border-width: 3px;
-  box-shadow:
-    0 0 0 4px rgba(21, 101, 192, 0.15),
-    0 4px 18px rgba(13, 71, 161, 0.25);
+  border: none;
+  box-shadow: none;
 }
 
 /* ══════════════════════════════════════════════════
@@ -152,23 +149,23 @@
 @media (max-width: 900px) {
   .tu-pill        { width: 46px; height: 46px; }
   .tu-avatar-img  { width: 46px; height: 46px; }
-  .tu-pills       { height: 58px; gap: 8px; }
+  .tu-pills       { height: auto; gap: 8px; flex-wrap: wrap; }
 }
 
 @media (max-width: 768px) {
-  .testimonials-unique { padding: 60px 0 40px; gap: 26px; }
+  .testimonials-unique { padding: 10px 0 40px; gap: 26px; }
   .tu-quote-wrap  { padding: 0 28px; min-height: 190px; }
   .tu-quote-mark  { font-size: 4rem; }
   .tu-pill        { width: 42px; height: 42px; }
   .tu-avatar-img  { width: 42px; height: 42px; }
-  .tu-pills       { height: 54px; gap: 7px; }
+  .tu-pills       { height: auto; gap: 7px; flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
-  .testimonials-unique { padding: 50px 0 30px; gap: 22px; }
+  .testimonials-unique { padding: 10px 0 30px; gap: 22px; }
   .tu-quote-wrap  { padding: 0 18px; min-height: 210px; }
   .tu-quote-text  { font-size: 1rem; }
   .tu-pill        { width: 36px; height: 36px; }
   .tu-avatar-img  { width: 36px; height: 36px; }
-  .tu-pills       { height: 46px; gap: 5px; }
+  .tu-pills       { height: auto; gap: 5px; flex-wrap: wrap; padding: 0 10px; }
 }

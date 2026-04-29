@@ -629,12 +629,9 @@ const Home = () => {
             <section id="partners" className="section" style={{ background: '#ffffff' }}>
                 <div className="container">
                     <FadeInSection>
-                        <div className="section-header center">
+                        <div className="section-header center" style={{ marginBottom: '20px' }}>
                             <h2 className="section-title">What Our <span>Clients</span> <span>Say</span></h2>
-                            <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
-                                Leading companies across automotive, aerospace, pharma, and
-                                engineering trust Asian Enterprises for precision calibration.
-                            </p>
+                            <div className="section-title-underline" />
                         </div>
                     </FadeInSection>
                     <Testimonials />
@@ -645,12 +642,9 @@ const Home = () => {
             <section id="contact" className="section" style={{ background: 'var(--bg-page)' }}>
                 <div className="container">
                     <FadeInSection>
-                        <div className="section-header center" style={{ marginBottom: '56px' }}>
-                            <div className="section-tag">Get In Touch</div>
+                        <div className="section-header center" style={{ marginBottom: '20px' }}>
                             <h2 className="section-title">Let's Discuss Your <span>Calibration Needs</span></h2>
-                            <p className="section-subtitle" style={{ maxWidth: '560px', margin: '12px auto 0' }}>
-                                Reach out to <strong>Asian Enterprises</strong> for a free consultation. Our team responds within 24 business hours.
-                            </p>
+                            <div className="section-title-underline" />
                         </div>
                     </FadeInSection>
 
@@ -703,32 +697,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* ─── CTA BANNER ─── */}
-            <section className="cta-banner">
-                <div className="cta-bg-grid" />
-                <div className="cta-glow" />
-                <div className="container cta-inner">
-                    <FadeInSection>
-                        <div className="cta-text">
-                            <h2 className="cta-title">Ready to Ensure Your Instruments Are Accurate?</h2>
-                            <p className="cta-sub">Contact <strong>Asian Enterprises</strong> today for a free consultation and quote on expert calibration &amp; validation services.</p>
-                        </div>
-                    </FadeInSection>
-                    <div className="cta-actions">
-                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                            <Link to="/contact" className="btn-primary">
-                                <span>Contact Us Today</span>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </Link>
-                        </motion.div>
-                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                            <Link to="/projects" className="btn-outline">View Our Projects</Link>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
             {/* ── Lightbox (portal to body) ── */}
             {selected && ReactDOM.createPortal(
                 <div className="lightbox" onClick={closeLightbox}>

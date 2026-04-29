@@ -1030,7 +1030,8 @@
 
     .home-gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 180px 180px 180px;
+        grid-template-rows: auto;
+        grid-auto-rows: 180px;
     }
 
     .hg-item:nth-child(1) {
@@ -1281,6 +1282,7 @@
 
     .home-gallery-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
         grid-auto-rows: auto;
         gap: 10px;
     }

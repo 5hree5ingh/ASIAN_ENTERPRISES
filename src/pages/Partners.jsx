@@ -2,14 +2,15 @@ import React from 'react';
 import './Partners.css';
 
 const partners = [
-    { name: 'Tata Motors', industry: 'Automotive', abbr: 'TM' },
-    { name: 'Mahindra & Mahindra', industry: 'Automotive', abbr: 'M&M' },
+    { name: 'Tata Motors', industry: 'Automotive', abbr: 'TM', logo: '/images/logos/logo_tata.png' },
+    { name: 'Mahindra & Mahindra', industry: 'Automotive', abbr: 'M&M', logo: '/images/logos/logo_mahindra.png' },
+    { name: 'Dixon Technologies', industry: 'Electronics Manufacturing', abbr: 'DT', logo: '/images/logos/Dixon.png' },
     { name: 'DRDO', industry: 'Defence & Aerospace', abbr: 'DRDO' },
-    { name: 'Hindustan Aeronautics', industry: 'Aerospace', abbr: 'HAL' },
-    { name: 'Sun Pharmaceutical', industry: 'Pharmaceutical', abbr: 'SP' },
+    { name: 'Hindustan Aeronautics', industry: 'Aerospace', abbr: 'HAL', logo: '/images/logos/logo_hal.png' },
+    { name: 'Sun Pharmaceutical', industry: 'Pharmaceutical', abbr: 'SP', logo: '/images/logos/logo_sunpharma.png' },
     { name: 'Bajaj Auto', industry: 'Automotive', abbr: 'BA' },
-    { name: 'Bharat Petroleum', industry: 'Oil & Gas', abbr: 'BPCL' },
-    { name: 'Larsen & Toubro', industry: 'Engineering', abbr: 'L&T' },
+    { name: 'Bharat Petroleum', industry: 'Oil & Gas', abbr: 'BPCL', logo: '/images/logos/logo_bpcl.png' },
+    { name: 'Larsen & Toubro', industry: 'Engineering', abbr: 'L&T', logo: '/images/logos/logo_lt.png' },
     { name: 'Kokilaben Hospital', industry: 'Healthcare', abbr: 'KH' },
     { name: 'ISRO', industry: 'Space Research', abbr: 'ISRO' },
     { name: 'Forbes Marshall', industry: 'Process', abbr: 'FM' },
@@ -65,7 +66,11 @@ const Partners = () => (
                     {partners.map((p, i) => (
                         <div key={i} className="partner-card glass-card">
                             <div className="partner-logo">
-                                <span className="partner-abbr">{p.abbr}</span>
+                                {p.logo ? (
+                                    <img src={p.logo} alt={p.name} className="partner-logo-img" />
+                                ) : (
+                                    <span className="partner-abbr">{p.abbr}</span>
+                                )}
                             </div>
                             <div className="partner-info">
                                 <div className="partner-name">{p.name}</div>
@@ -108,7 +113,7 @@ const Partners = () => (
         {/* Testimonials */}
         <section className="section">
             <div className="container">
-                <div className="section-header center" style={{ marginBottom: '60px' }}>
+                <div className="section-header center" style={{ marginBottom: '20px' }}>
                     <div className="section-tag">Testimonials</div>
                     <h2 className="section-title">What Our <span>Clients Say</span></h2>
                 </div>
