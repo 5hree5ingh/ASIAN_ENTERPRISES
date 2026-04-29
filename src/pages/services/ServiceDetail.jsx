@@ -51,13 +51,6 @@ const ServiceDetail = () => {
                 </div>
 
                 <div className="sd-hero-content-col">
-                    <motion.div className="sd-breadcrumb"
-                        initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <Link to="/">Home</Link><ChevronRight size={13} />
-                        <Link to="/facilities">Services</Link><ChevronRight size={13} />
-                        <Link to={`/services/${catSlug}`}>{cat.shortTitle}</Link><ChevronRight size={13} />
-                        <span>{svc.name}</span>
-                    </motion.div>
 
                     <motion.div className="sd-cat-tag"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>

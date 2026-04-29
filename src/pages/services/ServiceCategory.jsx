@@ -93,12 +93,6 @@ const ServiceCategory = () => {
                 <div className="svc-hero-overlay" />
                 <div className="svc-hero-grid" />
                 <div className="container svc-hero-inner">
-                    <motion.div className="svc-breadcrumb"
-                        initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <Link to="/">Home</Link><ChevronRight size={14} />
-                        <Link to="/facilities">Services</Link><ChevronRight size={14} />
-                        <span>{cat.shortTitle}</span>
-                    </motion.div>
 
                     <motion.div className="svc-hero-tag"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
@@ -115,21 +109,6 @@ const ServiceCategory = () => {
                         {cat.tagline}
                     </motion.p>
 
-                    <motion.p className="svc-hero-desc"
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
-                        Asian Enterprises delivered world-class calibration &amp; validation services for
-                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
-                    </motion.p>
-
-                    <motion.div className="svc-hero-actions"
-                        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-                        <a href="https://wa.me/919760188223" target="_blank" rel="noopener noreferrer" className="svc-btn-primary">
-                            Get a Free Quote <ArrowRight size={18} />
-                        </a>
-                        <button className="svc-btn-outline" onClick={() => navigate('/contact')}>
-                            Contact Us
-                        </button>
-                    </motion.div>
                 </div>
             </section>
 

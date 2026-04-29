@@ -38,10 +38,6 @@ const ValidationPage = () => {
                 <div className="val-hero-overlay" />
                 <div className="val-hero-grid" />
                 <div className="container val-hero-inner">
-                    <motion.div className="val-breadcrumb"
-                        initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <Link to="/">Home</Link><ChevronRight size={13} /><span>Validation Services</span>
-                    </motion.div>
 
                     <motion.div className="val-hero-tag"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
@@ -53,19 +49,6 @@ const ValidationPage = () => {
                         Validation &<br /><span>Qualification</span><br />Services
                     </motion.h1>
 
-                    <motion.p className="val-hero-desc"
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-                        Asian Enterprises delivered world-class calibration &amp; validation services for
-                        precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
-                    </motion.p>
-
-                    <motion.div className="val-hero-actions"
-                        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }}>
-                        <a href="https://wa.me/919760188223" target="_blank" rel="noopener noreferrer" className="val-btn-primary">
-                            Request Validation Quote <ArrowRight size={18} />
-                        </a>
-                        <Link to="/contact" className="val-btn-outline">Contact Our Team</Link>
-                    </motion.div>
 
                     {/* Stats */}
                     <motion.div className="val-hero-stats"

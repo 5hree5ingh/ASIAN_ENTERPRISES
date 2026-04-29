@@ -52,13 +52,6 @@ const ValidationDetail = () => {
                 </div>
 
                 <div className="vd-hero-content-col">
-                    <motion.div className="vd-breadcrumb"
-                        initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <Link to="/">Home</Link><ChevronRight size={13} />
-                        <Link to="/validation">Validation</Link><ChevronRight size={13} />
-                        <Link to={`/validation/${group.slug}`}>{group.shortTitle}</Link><ChevronRight size={13} />
-                        <span>{svc.name}</span>
-                    </motion.div>
 
                     <motion.div className="vd-cat-tag"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>

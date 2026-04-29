@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import { ArrowUpDown, Circle, Gauge, Maximize2, Ruler, Scale, Search, Settings, Thermometer, Wrench } from 'lucide-react';
 import Testimonials from '../components/Testimonials';
@@ -209,8 +209,23 @@ const services = [
 
 const Home = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [selected, setSelected] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
+
+    /* ── Scroll to hash section when navigating from another page ── */
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.replace('#', '');
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 90;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    }, [location]);
 
     const openLightbox = (item, idx) => {
         setSelected(item);
@@ -456,7 +471,7 @@ const Home = () => {
                         </div>
                     </FadeInSection>
 
-                    <div className="services-grid services-grid--3col">
+                    <div className="services-grid services-grid--4col">
                         {[
                             {
                                 icon: (
@@ -468,8 +483,21 @@ const Home = () => {
                                 title: 'Equipment Qualification',
                                 desc: 'IQ, OQ & PQ validation of critical process equipment in pharmaceutical, biotech, and food manufacturing.',
                                 items: ['Autoclave Validation', 'Hot Air Oven', 'Incubator & BOD', 'Muffle Furnace'],
-                                img: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80',
+                                img: '/images/val_equipment.png',
                                 path: '/validation/equipment',
+                            },
+                            {
+                                icon: (
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="var(--blue-700)">
+                                        <path d="M14 4v10.54a4 4 0 11-4 0V4a2 2 0 014 0z" />
+                                    </svg>
+                                ),
+                                slug: 'thermal',
+                                title: 'Thermal & Reactor Qualification',
+                                desc: 'Validation of pasteurisation systems, reactors, and fermenters in food, beverage, and chemical manufacturing.',
+                                items: ['Tunnel Pasteurizer', 'Reactor & Fermenter'],
+                                img: '/images/val_thermal.png',
+                                path: '/validation/thermal',
                             },
                             {
                                 icon: (
@@ -481,7 +509,7 @@ const Home = () => {
                                 title: 'Utility Qualification',
                                 desc: 'Testing and qualification of critical utilities — clean rooms, steam systems, compressed air, and purified water.',
                                 items: ['HVAC & Clean Room', 'Steam Quality Testing', 'Compressed Air', 'Purified Water'],
-                                img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80',
+                                img: '/images/val_utility.png',
                                 path: '/validation/utility',
                             },
                             {
@@ -492,9 +520,9 @@ const Home = () => {
                                 ),
                                 slug: 'process',
                                 title: 'Process & Automation',
-                                desc: 'Validation of PLCs, SCADA systems, VFDs, and purified water systems in GMP and regulated environments.',
-                                items: ['PLC / SCADA Validation', 'VFD Repair & Testing', 'Water System Validation'],
-                                img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80',
+                                desc: 'Validation of PLCs, SCADA systems, and VFDs in GMP and regulated environments.',
+                                items: ['PLC / SCADA Validation', 'VFD Repair & Testing'],
+                                img: '/images/val_process.png',
                                 path: '/validation/process',
                             },
                         ].map((svc, i) => (

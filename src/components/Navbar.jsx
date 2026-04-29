@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
     ChevronDown, Ruler, Thermometer, Zap, Settings,
@@ -154,7 +154,7 @@ const CalibrationDropdown = ({ open, scrolled }) => (
                 </div>
                 <div className="mega-bottom-bar">
                     <span className="mega-bottom-txt">NABL Accredited · ISO/IEC 17025 · NPL Traceable</span>
-                    <Link to="/contact" className="mega-bottom-cta">Get a Free Quote</Link>
+                    <Link to="/#contact" className="mega-bottom-cta">Get a Free Quote</Link>
                 </div>
             </motion.div>
         )}
@@ -203,7 +203,7 @@ const ValidationDropdown = ({ open, scrolled }) => (
                 </div>
                 <div className="mega-bottom-bar">
                     <span className="mega-bottom-txt">IQ · OQ · PQ · FDA · EU GMP · WHO Compliant</span>
-                    <Link to="/contact" className="mega-bottom-cta">Request Validation Quote</Link>
+                    <Link to="/#contact" className="mega-bottom-cta">Request Validation Quote</Link>
                 </div>
             </motion.div>
         )}
@@ -263,7 +263,10 @@ const Navbar = () => {
 
     const scrollTo = (id) => {
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
     };
 
     const makeHoverHandlers = (setter, timer) => ({
@@ -308,7 +311,7 @@ const Navbar = () => {
                                 About Us
                             </button>
                         ) : (
-                            <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About Us</Link>
+                            <Link to="/#about" className="nav-link">About Us</Link>
                         )}
                     </li>
 
@@ -345,7 +348,7 @@ const Navbar = () => {
                                 Gallery
                             </button>
                         ) : (
-                            <Link to="/gallery" className={`nav-link ${location.pathname === '/gallery' ? 'active' : ''}`}>Gallery</Link>
+                            <Link to="/#gallery" className="nav-link">Gallery</Link>
                         )}
                     </li>
                     <li>
@@ -365,7 +368,7 @@ const Navbar = () => {
                                 Contact Us
                             </button>
                         ) : (
-                            <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>Contact Us</Link>
+                            <Link to="/#contact" className="nav-link">Contact Us</Link>
                         )}
                     </li>
                 </ul>
@@ -384,8 +387,16 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-                <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
-                <Link to="/about" className={`mobile-link ${location.pathname === '/about' ? 'active' : ''}`}>About Us</Link>
+                {isHome ? (
+                    <button className="mobile-link active" onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false); }}>Home</button>
+                ) : (
+                    <Link to="/" className="mobile-link" onClick={() => setMenuOpen(false)}>Home</Link>
+                )}
+                {isHome ? (
+                    <button className="mobile-link" onClick={() => { scrollTo('about'); setMenuOpen(false); }}>About Us</button>
+                ) : (
+                    <Link to="/#about" className="mobile-link" onClick={() => setMenuOpen(false)}>About Us</Link>
+                )}
 
                 {/* Mobile Calibration accordion */}
                 <div className="mobile-services-accord">
@@ -473,7 +484,11 @@ const Navbar = () => {
                     </AnimatePresence>
                 </div>
 
-                <Link to="/gallery"  className={`mobile-link ${location.pathname === '/gallery'  ? 'active' : ''}`}>Gallery</Link>
+                {isHome ? (
+                    <button className="mobile-link" onClick={() => { scrollTo('gallery'); setMenuOpen(false); }}>Gallery</button>
+                ) : (
+                    <Link to="/#gallery" className="mobile-link" onClick={() => setMenuOpen(false)}>Gallery</Link>
+                )}
                 {isHome ? (
                     <button className="mobile-link" onClick={() => { scrollTo('partners'); setMenuOpen(false); }}>Partners</button>
                 ) : (
@@ -482,7 +497,7 @@ const Navbar = () => {
                 {isHome ? (
                     <button className="mobile-link" onClick={() => { scrollTo('contact'); setMenuOpen(false); }}>Contact Us</button>
                 ) : (
-                    <Link to="/contact" className={`mobile-link ${location.pathname === '/contact'  ? 'active' : ''}`}>Contact Us</Link>
+                    <Link to="/#contact" className="mobile-link" onClick={() => setMenuOpen(false)}>Contact Us</Link>
                 )}
 
 

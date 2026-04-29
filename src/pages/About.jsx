@@ -261,28 +261,7 @@ const About = () => {
             </div>
         </section>
 
-        {/* ─── CTA ─── */}
-        <section className="about-cta">
-            <div className="container about-cta-inner">
-                <div className="about-cta-text">
-                    <h2 className="about-cta-title">Ready to Work With Us?</h2>
-                    <p className="about-cta-sub">
-                        Partner with India's trusted calibration experts. Get a free consultation today.
-                    </p>
-                </div>
-                <div className="about-cta-actions">
-                    <Link to="/contact" className="about-cta-btn-primary">
-                        Contact Us
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </Link>
-                    <Link to="/projects" className="about-cta-btn-outline">
-                        View Projects
-                    </Link>
-                </div>
-            </div>
-        </section>
+
     </div>
     );
 };

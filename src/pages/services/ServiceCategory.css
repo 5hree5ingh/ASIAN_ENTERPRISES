@@ -5,7 +5,7 @@
 /* ── HERO ──────────────────────────────────────── */
 .svc-hero {
     position: relative;
-    min-height: 88vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 140px 0 80px;

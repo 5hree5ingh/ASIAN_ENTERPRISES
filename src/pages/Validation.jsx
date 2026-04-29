@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import {
     ArrowRight, ClipboardCheck, Wind, Cpu, FlaskConical,
-    CheckCircle2, Award, Shield
+    CheckCircle2, Award, Shield, Thermometer
 } from 'lucide-react';
 import { VALIDATION_GROUPS } from '../data/validationData';
 import './Validation.css';
@@ -12,12 +12,14 @@ const ICON_MAP = {
     flask: FlaskConical,
     wind: Wind,
     cpu: Cpu,
+    thermometer: Thermometer,
 };
 
 const GROUP_IMAGES = {
-    equipment: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=720&q=80',
-    utility:   'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=720&q=80',
-    process:   'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=720&q=80',
+    equipment: '/images/val_equipment.png',
+    thermal:   '/images/val_thermal.png',
+    utility:   '/images/val_utility.png',
+    process:   '/images/val_process.png',
 };
 
 const FadeIn = ({ children, delay = 0, className = '' }) => {
@@ -49,18 +51,6 @@ const Validation = () => (
                     initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.7 }}>
                     Validation &amp;<br /><span>Qualification</span> Services
                 </motion.h1>
-                <motion.p className="val-hero-desc"
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-                    Asian Enterprises delivered world-class calibration &amp; validation services for
-                    precision measuring instruments — ensuring your instruments meet the highest accuracy standards.
-                </motion.p>
-                <motion.div className="val-hero-actions"
-                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-                    <a href="https://wa.me/919760188223" target="_blank" rel="noopener noreferrer" className="val-btn-primary">
-                        Get a Free Quote <ArrowRight size={18} />
-                    </a>
-                    <Link to="/contact" className="val-btn-outline">Contact Us</Link>
-                </motion.div>
             </div>
         </section>
 
@@ -72,7 +62,7 @@ const Validation = () => (
                         <div className="section-tag">Our Services</div>
                         <h2 className="section-title">Validation <span>Categories</span></h2>
                         <p className="section-subtitle">
-                            Three comprehensive validation domains covering all critical equipment, utilities,
+                            Four comprehensive validation domains covering all critical equipment, utilities,
                             and automated systems in regulated industries.
                         </p>
                     </div>

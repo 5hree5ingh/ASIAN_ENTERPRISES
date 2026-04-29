@@ -1,7 +1,7 @@
 /**
  * validationData.js
  * Central data store for all validation & qualification services.
- * Organized into 3 groups: Equipment, Utility, and Process & Automation.
+ * Organized into 4 groups: Equipment, Thermal Processing, Utility, and Process & Automation.
  */
 
 export const VALIDATION_GROUPS = [
@@ -97,6 +97,16 @@ export const VALIDATION_GROUPS = [
                     'Over-temperature alarm and controller verification',
                 ],
             },
+        ],
+    },
+    {
+        id: 'thermal',
+        slug: 'thermal',
+        title: 'Thermal & Reactor Qualification',
+        shortTitle: 'Thermal & Reactor',
+        icon: 'thermometer',
+        description: 'Validation of pasteurisation systems, reactors, and fermenters used in food, beverage, pharmaceutical, and chemical manufacturing.',
+        services: [
             {
                 id: 'tunnel-pasteurizer-validation',
                 name: 'Tunnel Pasteurizer Validation',
@@ -147,7 +157,7 @@ export const VALIDATION_GROUPS = [
         title: 'Utility Qualification',
         shortTitle: 'Utility',
         icon: 'wind',
-        description: 'Testing and qualification of critical utilities — clean rooms, steam systems, compressed air, and purified water.',
+        description: 'Testing and qualification of critical utilities — clean rooms, steam systems, compressed air, purified water, and gas systems.',
         services: [
             {
                 id: 'hvac-cleanroom',
@@ -213,6 +223,28 @@ export const VALIDATION_GROUPS = [
                     'Point-of-use sampling at all critical locations',
                 ],
             },
+            {
+                id: 'water-system-validation',
+                name: 'Purified Water System Validation',
+                img: 'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=600&q=80',
+                description:
+                    'Complete qualification of Purified Water (PW), Water for Injection (WFI), and Highly Purified Water (HPW) systems per WHO TRS 929, USFDA, and Ph. Eur. requirements. Includes 3-phase validation approach, TOC, conductivity, and microbiological trend monitoring.',
+                specs: [
+                    { label: 'Water Grades', value: 'PW, WFI, HPW' },
+                    { label: 'Parameters', value: 'TOC, Conductivity, Microbial, Endotoxin' },
+                    { label: 'Phase Duration', value: '2–4 weeks per phase' },
+                    { label: 'Standard', value: 'WHO TRS 929 / USP <1231> / Ph. Eur. 0169' },
+                ],
+                applications: ['Pharma Manufacturing', 'Injectable Preparation', 'Hospital Pharmacy', 'Biotech'],
+                protocol: [
+                    'IQ — P&ID vs. as-built verification',
+                    'OQ — sampling point function and sanitisation cycle',
+                    'Phase 1 — daily sampling for 4 weeks',
+                    'Phase 2 — thrice-weekly sampling for 4 weeks',
+                    'Phase 3 — routine sampling frequency establishment',
+                    'Trend analysis and validation conclusion report',
+                ],
+            },
         ],
     },
     {
@@ -221,7 +253,7 @@ export const VALIDATION_GROUPS = [
         title: 'Process & Automation Validation',
         shortTitle: 'Process & Automation',
         icon: 'cpu',
-        description: 'Validation of automated systems, PLC controllers, VFDs, and purified water systems used in GMP and regulated environments.',
+        description: 'Validation of automated systems, PLC controllers, and VFDs used in GMP and regulated environments.',
         services: [
             {
                 id: 'plc-validation',
@@ -265,28 +297,6 @@ export const VALIDATION_GROUPS = [
                     'Load test on motor test bench',
                     'Output waveform and harmonic verification',
                     'Delivery with calibrated test certificate',
-                ],
-            },
-            {
-                id: 'water-system-validation',
-                name: 'Purified Water System Validation',
-                img: 'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=600&q=80',
-                description:
-                    'Complete qualification of Purified Water (PW), Water for Injection (WFI), and Highly Purified Water (HPW) systems per WHO TRS 929, USFDA, and Ph. Eur. requirements. Includes 3-phase validation approach, TOC, conductivity, and microbiological trend monitoring.',
-                specs: [
-                    { label: 'Water Grades', value: 'PW, WFI, HPW' },
-                    { label: 'Parameters', value: 'TOC, Conductivity, Microbial, Endotoxin' },
-                    { label: 'Phase Duration', value: '2–4 weeks per phase' },
-                    { label: 'Standard', value: 'WHO TRS 929 / USP <1231> / Ph. Eur. 0169' },
-                ],
-                applications: ['Pharma Manufacturing', 'Injectable Preparation', 'Hospital Pharmacy', 'Biotech'],
-                protocol: [
-                    'IQ — P&ID vs. as-built verification',
-                    'OQ — sampling point function and sanitisation cycle',
-                    'Phase 1 — daily sampling for 4 weeks',
-                    'Phase 2 — thrice-weekly sampling for 4 weeks',
-                    'Phase 3 — routine sampling frequency establishment',
-                    'Trend analysis and validation conclusion report',
                 ],
             },
         ],

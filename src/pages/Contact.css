@@ -278,6 +278,10 @@
         padding: 24px 0 20px;
     }
 
+    .contact-info-compact {
+        display: none;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
