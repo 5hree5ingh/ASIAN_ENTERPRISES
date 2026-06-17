@@ -28,7 +28,7 @@ const contactInfo = [
             </svg>
         ),
         label: 'Phone',
-        value: '09646059158 | 08284038494',
+        value: '+91 97601 88223 | +91 94111 11480',
     },
     {
         icon: (

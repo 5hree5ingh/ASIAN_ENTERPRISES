@@ -262,8 +262,8 @@ const Brochure = () => {
                                     </div>
                                     <div className="bp-contact-card-label">Phone</div>
                                     <div className="bp-contact-card-value">
-                                        09646059158<br />
-                                        08284038494
+                                        +91 97601 88223<br />
+                                        +91 94111 11480
                                     </div>
                                 </div>
 
